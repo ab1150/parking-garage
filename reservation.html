@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home Page</title>
+<title>Parking Reservation</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 <style>
 	.ey
@@ -45,7 +45,7 @@
 					<li>
 						<a href="register.html"><h3>Register</h3></a>
 						<a href="login.html"><h3>Log in</h3></a>
-						<a href="reservation.html"><h3>Make a reservation/h3></a>
+						<a href="reservation.html"><h3>Make a reservation</h3></a>
 					</li>
 			</section>
 		</section>
@@ -54,7 +54,7 @@
 		<div id="main">
 			<article class="post">
 				<h2>Make Reservation</h2>
-				Choose reservation time:<br>
+				From:<br>
 				<select name="hour">
 					<option value="12">12</option>
 					<option value="1">1</option>
@@ -69,6 +69,11 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 				</select>
+				<select name="time">
+					<option value="1">AM</option>
+					<option value="2">PM</option>
+				</select>
+				To:<br>
 				<select name="hour">
 					<option value="12">12</option>
 					<option value="1">1</option>
@@ -83,6 +88,11 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 				</select>
+				<select name="time">
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+				</select>
+				<input type = "submit" value = "Check Available Spots">
 			</article>
 		</div>
 
