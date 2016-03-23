@@ -10,8 +10,8 @@
 			<h1><a href="index.html">Automated Garage</a></h1>
 				<nav class="links">
 					<ul>
-						<li><a href="register.html">Register</a></li>
-						<li><a href="login.html">Log in</a></li>
+						<li><a href="register.php">Register</a></li>
+						<li><a href="login.php">Log in</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -34,8 +34,8 @@
 			<section>
 				<ul class="links">
 					<li>
-						<a href="register.html"><h3>Register</h3></a>
-						<a href="login.html"><h3>Log in</h3></a>
+						<a href="register.php"><h3>Register</h3></a>
+						<a href="login.php"><h3>Log in</h3></a>
 						<a href="reservation.html"><h3>Make a reservation</h3></a>
 					</li>
 			</section>
