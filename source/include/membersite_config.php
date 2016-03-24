@@ -14,9 +14,9 @@ $fgmembersite->SetAdminEmail('samyang1995@gmail.com');
 //note that the script will create the table (for example, fgusers in this case)
 //by itself on submitting register.php for the first time
 $fgmembersite->InitDB(/*hostname*/'localhost',
-                      /*username*/'prasanth',
-                      /*password*/'p',
-                      /*database name*/'testdb',
+                      /*username*/'root',
+                      /*password*/'',
+                      /*database name*/'testDB',
                       /*table name*/'fgusers3');
 
 //For better security. Get a random string from this link: http://tinyurl.com/randstr

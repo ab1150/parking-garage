@@ -1,31 +1,48 @@
 <?php
-   include("config.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      $count = mysqli_num_rows($result);
-      
-      // If result matched $myusername and $mypassword, table row must be 1 row
+	session_start();
+	
+	//DB configuration Constants
+	define('_HOST_NAME_', 'localhost');
+	define('_USER_NAME_', 'root');
+	define('_DB_PASSWORD', '');
+	define('_DATABASE_NAME_', 'testDB');
+	
+	//PDO Database Connection
+	try {
+		$databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
+		$databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch(PDOException $e) {
+		echo 'ERROR: ' . $e->getMessage();
+	}
+	
+	if(isset($_POST['submit'])){
+		$errMsg = '';
+		//username and password sent from Form
+		$username = trim($_POST['username']);
+		$password = trim($_POST['password']);
 		
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: welcome.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+		if($username == '')
+			$errMsg .= 'You must enter your Username<br>';
+		
+		if($password == '')
+			$errMsg .= 'You must enter your Password<br>';
+		
+		
+		if($errMsg == ''){
+			$records = $databaseConnection->prepare('SELECT id,username,password FROM  fgusers3 WHERE username = :username');
+			$records->bindParam(':username', $username);
+			$records->execute();
+			$results = $records->fetch(PDO::FETCH_ASSOC);
+			if(count($results) > 0 && password_verify($password, $results['password'])){
+				$_SESSION['username'] = $results['username'];
+				header('location:dashboard.php');
+				exit;
+			}else{
+				$errMsg .= 'Username and Password are not found<br>';
+			}
+		}
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +93,7 @@
 			<article class="post">
 				<p>
 					<h2>Login here!</h2>
-					<form action="action_page.php" method="post" accept-charset="UTF-8">
+					<form action="" method="post" accept-charset="UTF-8">
 						Username:<br>
 						<input type ="text" name="username"><br>
 						Password:<br>
@@ -105,5 +122,5 @@
 			<script src="assets/js/main.js"></script>
 
 
-</body>
+	</body>
 </html>
