@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	
+	
+	
 	//DB configuration Constants
 	define('_HOST_NAME_', 'localhost');
 	define('_USER_NAME_', 'root');
@@ -14,8 +16,7 @@
 	} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
 	}
-	
-	//echo var_dump(isset($_POST["submit"]));
+
 	if(isset($_POST["submit"])){
 		$errMsg = '';
 		//username and password sent from Form1

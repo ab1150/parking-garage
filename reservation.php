@@ -1,3 +1,6 @@
+<?php
+	include("reservationScript.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +19,11 @@
 <body>
 	<div id="wrapper">
 		<header id="header">
-			<h1><a href="index.html">Automated Garage</a></h1>
+			<h1><a href="index.php">Automated Garage</a></h1>
 				<nav class="links">
 					<ul>
-						<li><a href="register.html">Register</a></li>
-						<li><a href="login.html">Log in</a></li>
+						<li><a href="register.php">Register</a></li>
+						<li><a href="login.php">Log in</a></li>
 						<li><a href="reservation.php">Reservations</a></li>
 					</ul>
 				</nav>
@@ -44,9 +47,9 @@
 			<section>
 				<ul class="links">
 					<li>
-						<a href="register.html"><h3>Register</h3></a>
-						<a href="login.html"><h3>Log in</h3></a>
-						<a href="reservation.html"><h3>Make a reservation</h3></a>
+						<a href="register.php"><h3>Register</h3></a>
+						<a href="login.php"><h3>Log in</h3></a>
+						<a href="reservation.php"><h3>Make a reservation</h3></a>
 					</li>
 			</section>
 		</section>
@@ -54,28 +57,42 @@
 		<!-- Main -->
 		<div id="main">
 			<article class="post">
-				<h2>Make Reservation</h2>
+				<h2>Make A Reservation</h2>
+				<form action="reservationScript.php" method="POST">
 				From:<br>
-                <input type="range" name="month" min="1" max="12" step="1">
-                <input type="range" name="day" min="1" max="31" step="1">
-                <input type="range" name="year" min="2016" max="2017" step="1">
-                <input type="range" name="hour" min="1" max="12" step="1">
-                <input type="range" name="minute" min="0" max="59" step="1">
-                <select name="daytime">
+				Date (MM/DD/YYYY):
+                <input type="number" name="inMonth" min="1" max="12" step="1" required="required">
+                /
+                <input type="number" name="inDay" min="1" max="31" step="1" required="required">
+                /
+                <input type="number" name="inYear" min="2016" max="2017" step="1" required="required">
+                Time:
+                <input type="number" name="inHour" min="1" max="12" step="1" required="required">
+                :
+                <input type="number" name="inMinute" min="0" max="59" step="1" required="required">
+                <select name="inDaytime" >
 					<option value="1">AM</option>
 					<option value="2">PM</option>
 				</select>
+				<br>
 				To:<br>
-                <input type="range" name="month" min="1" max="12" step="1">
-                <input type="range" name="day" min="1" max="31" step="1">
-                <input type="range" name="year" min="2016" max="2017" step="1">
-                <input type="range" name="hour" min="1" max="12" step="1">
-                <input type="range" name="minute" min="0" max="59" step="1">
-                <select name="daytime">
+				Date (MM/DD/YYYY):
+                <input type="number" name="outMonth" min="1" max="12" step="1" required="required">
+                /
+                <input type="number" name="outDay" min="1" max="31" step="1" required="required">
+                /
+                <input type="number" name="outYear" min="2016" max="2017" step="1" required="required">
+                Time:
+                <input type="number" name="outHour" min="1" max="12" step="1" required="required">
+                :
+                <input type="number" name="outMinute" min="0" max="59" step="1" required="required">
+                <select name="outDaytime">
 					<option value="1">AM</option>
 					<option value="2">PM</option>
 				</select>
-				<input type = "submit" value = "Check Available Spots">
+				<br>
+				<input type = "submit" name = "submit" value = "Check Available Spots">
+			</form>
 			</article>
 		</div>
 

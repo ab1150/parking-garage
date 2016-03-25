@@ -11,7 +11,7 @@
 <body>
 	<div id="wrapper">
 		<header id="header">
-			<h1><a href="index.html">Automated Garage</a></h1>
+			<h1><a href="index.php">Automated Garage</a></h1>
 				<nav class="links">
 					<ul>
 						<li><a href="register.php">Register</a></li>
@@ -40,7 +40,7 @@
 					<li>
 						<a href="register.php"><h3>Register</h3></a>
 						<a href="login.php"><h3>Log in</h3></a>
-						<a href="reservation.html"><h3>Make a reservation</h3></a>
+						<a href="reservation.php"><h3>Make a reservation</h3></a>
 					</li>
 			</section>
 		</section>
