@@ -134,7 +134,7 @@
                         $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = :user");
                         $licenseSQL->bindParam(':user',$user);
                         $licenseSQL->execute();
-                        $license = $licenseSQL->setFetchMode(PDE::FETCH_ASSOC);
+                        $license = $licenseSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "License Plate: $license->fetch()";
 
                         //close connection
