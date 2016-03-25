@@ -52,12 +52,12 @@
 					<h2>Login here!</h2>
 					<form action="loginScript.php" method="post" accept-charset="UTF-8">
 						Username:<br>
-						<input type ="text" name="username"><br>
+						<input type ="text" name="username"/><br>
 						Password:<br>
-						<input type ="password" name="password"><br>
-						<input type="submit" value="submit"><br>
-					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
+						<input type ="password" name="password"/><br>
+						<input type="submit" value="submit" name="submit"/><br>
 					</form>
+					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
 				</p>
 			</article>
 		</div>

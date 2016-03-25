@@ -88,9 +88,13 @@
 				<p>
 					<h2>My Info</h2>
                         <?php
+<<<<<<< HEAD
                         //start session
                         session_start();
 
+=======
+                        session_start();
+>>>>>>> b7a574d5b8400de2da9fac6936fa6686b81c9fb0
                         //connect to SQL host
                         $host = "localhost";
                         $SQLusername = "root";
