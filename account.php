@@ -88,6 +88,9 @@
 				<p>
 					<h2>My Info</h2>
                         <?php
+                        //start session
+                        session_start();
+
                         //connect to SQL host
                         $host = "localhost";
                         $SQLusername = "root";
@@ -105,24 +108,27 @@
                         //store the username in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
                         //print username and password
-                        echo "Username: $user<br>";
+                        echo "Username: $user <br>";
                         echo "Password: ****** <br>";
 
                         //send SQL queries to the database and print the result
                         //print the balance
-                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE Username = $user");
+                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE Username = :user");
+                        $balanceSQL->bindParam(':user',$user);
                         $balanceSQL->execute();
                         $balance = $balanceSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "Balance: $balance->fetch()";
 
                         //print any reservations
-                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE Username = $user");
+                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE Username = :user");
+                        $reservationSQL->bindParam(':user',$user);
                         $reservationSQL->execute();
                         $reservation = $reservationSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "Reservations: $reservation->fetch()";
 
                         //print license plate of car
-                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = $user");
+                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = :user");
+                        $licenseSQL->bindParam(':user',$user);
                         $licenseSQL->execute();
                         $license = $licenseSQL->setFetchMode(PDE::FETCH_ASSOC);
                         echo "License Plate: $license->fetch()";
