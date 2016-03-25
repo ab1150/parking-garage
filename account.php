@@ -7,12 +7,12 @@
 <body>
 	<div id="wrapper">
 		<header id="header">
-			<h1><a href="index.html">Automated Garage</a></h1>
+			<h1><a href="index.php">Automated Garage</a></h1>
 				<nav class="links">
 					<ul>
 						<li><p>Welcome! </p></li>
-						<li><a href="reservation.html">Make a reservation</a></li>
-						<li><a href="index.html">Log out</a></li>
+						<li><a href="reservation.php">Make a reservation</a></li>
+						<li><a href="index.php">Log out</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -35,8 +35,8 @@
 			<section>
 				<ul class="links">
 					<li>
-						<a href="reservation.html"><h3>Make a reservation</h3></a>
-						<a href="index.html"><h3>Log out</h3></a>
+						<a href="reservation.php"><h3>Make a reservation</h3></a>
+						<a href="index.php"><h3>Log out</h3></a>
 					</li>
 			</section>
 		</section>
@@ -71,7 +71,7 @@
 						Current time:
 						<div id="time"></div>
                         <br>
-					<a href="reservation.html">Make a reservation</a><p>
+					<a href="reservation.php">Make a reservation</a><p>
 					</form>
 				</p>
 			</article>
@@ -80,7 +80,7 @@
 		<section id="sidebar">
 			<section id="intro">
 				<header>
-					<a href="account.html" class="image"><img src="images/0104.jpg"></a>
+					<a href="account.php" class="image"><img src="images/0104.jpg"></a>
 					<h2>My Account</h2>
                 </header>
 			</section>
@@ -115,10 +115,7 @@
                         {
                             echo $err->getMessage();
                         }
-<<<<<<< HEAD
-=======
 
->>>>>>> e490bc406cc8d71605f9522d669538980c504a01
                         function getSingleValue($tableName, $prop, $value, $columnName, $connection)
 							{
 							  $q = $connection->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
@@ -126,11 +123,8 @@
 							  $result = $f[$columnName];
 							  return $result;
 							}
-<<<<<<< HEAD
                         //store the username in a variable for use in SQL commands
-=======
                         //Store the username for the session in a variable for use in SQL commands
->>>>>>> e490bc406cc8d71605f9522d669538980c504a01
                         $user = htmlspecialchars($_SESSION['username']);
 
                         //print username and password

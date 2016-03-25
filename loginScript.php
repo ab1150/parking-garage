@@ -1,14 +1,8 @@
 <?php
 	session_start();
 	
-	function getSingleValue($tableName, $prop, $value, $columnName)
-	{
-	  $q = $conn->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
-	  $f = $q->fetch();
-	  $result = $f[$columnName];
-	  return $result;
-	}
-		
+	
+	
 	//DB configuration Constants
 	define('_HOST_NAME_', 'localhost');
 	define('_USER_NAME_', 'root');
@@ -22,8 +16,7 @@
 	} catch(PDOException $e) {
 		echo 'ERROR: ' . $e->getMessage();
 	}
-	
-	//echo var_dump(isset($_POST["submit"]));
+
 	if(isset($_POST["submit"])){
 		$errMsg = '';
 		//username and password sent from Form1

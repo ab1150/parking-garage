@@ -7,7 +7,7 @@
 <body>
 	<div id="wrapper">
 		<header id="header">
-			<h1><a href="index.html">Automated Garage</a></h1>
+			<h1><a href="index.php">Automated Garage</a></h1>
 				<nav class="links">
 					<ul>
 						<li><a href="register.php">Register</a></li>
@@ -51,7 +51,6 @@
 						<p>Group 6: Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung <p>
 					</div>
 				</header>
-				This is the body of the post!
 				<?php
 				echo "<table style='border: solid 1px black;'>";
 				echo "<tr><th>Spot Number</th><th>Status</th><th>Username</th><th>Start Time</th><th>Price</th></tr>";
