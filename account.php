@@ -115,6 +115,7 @@
                         {
                             echo $err->getMessage();
                         }
+
                         function getSingleValue($tableName, $prop, $value, $columnName, $connection)
 							{
 							  $q = $connection->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
@@ -122,7 +123,7 @@
 							  $result = $f[$columnName];
 							  return $result;
 							}
-                        //store the username in a variable for use in SQL commands
+                        //Store the username for the session in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
 
                         //print username and password
@@ -143,7 +144,7 @@
                         echo "License Plate: $result<br>";
 
                         //close connection
-                        //$connection->close();
+                        $connection->close();
                     ?>
                     <br>
 					<a href="editinfo.html">Edit Info</a><p>
