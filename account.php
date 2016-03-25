@@ -127,27 +127,12 @@
                         echo "Password: ****** <br>";
 
                         //send SQL queries to the database and print the result
-                        //print the balance
-                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE username = :user");
-                        $balanceSQL->bindParam(':user',$user);
-                        $balanceSQL->execute();
-                        $balance = $balanceSQL->setFetchMode(PDO::FETCH_NUM);
-                        echo "Balance: $balance[0]";
-
-                        //print any reservations
-                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE username = :user");
-                        $reservationSQL->bindParam(':user',$user);
-                        $reservationSQL->execute();
-
-                        $reservation = $reservationSQL->setFetchMode(PDO::FETCH_NUM);
-                        echo "Reservations: $reservation[0]";
-
-                        //print license plate of car
-                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE username = :user");
-                        $licenseSQL->bindParam(':user',$user);
-                        $licenseSQL->execute();
-                        $license = $licenseSQL->setFetchMode(PDO::FETCH_NUM);
-                        echo "License Plate: $license[0]";
+                        $SQL = $connection->prepare("SELECT Balance,Reservation,LicensePlate FROM accounts WHERE username = :user");
+                        $SQL->bindParam(':user',$user);
+                        $SQL->execute();
+                        $result = $SQL->setFetchMode(PDO::FETCH_NUM);
+                        $output = $result->fetch();
+                        echo "Balance: $output[0] <br> Reservation: $output[1] <br> LicensePlate: $output[2]";
 
                         //close connection
                         $connection->close();
