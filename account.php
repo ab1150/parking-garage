@@ -105,29 +105,45 @@
                     		echo 'ERROR: ' . $e->getMessage();
                     	}
 
+                        //connect to SQL host
+						define('_HOST_NAME_', 'localhost');
+						define('_USER_NAME_', 'root');
+						define('_DB_PASSWORD', '');
+						define('_DATABASE_NAME_', 'parkinggarage');
+                        try {
+                            $connection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
+                            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        }
+                        catch (PDOException $err)
+                        {
+                            echo $err->getMessage();
+                        }
+
                         //store the username in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
+
                         //print username and password
                         echo "Username: $user <br>";
                         echo "Password: ****** <br>";
 
                         //send SQL queries to the database and print the result
                         //print the balance
-                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE Username = :user");
+                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE username = :user");
                         $balanceSQL->bindParam(':user',$user);
                         $balanceSQL->execute();
                         $balance = $balanceSQL->setFetchMode(PDO::FETCH_NUM);
                         echo "Balance: $balance[0]";
 
                         //print any reservations
-                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE Username = :user");
+                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE username = :user");
                         $reservationSQL->bindParam(':user',$user);
                         $reservationSQL->execute();
+
                         $reservation = $reservationSQL->setFetchMode(PDO::FETCH_NUM);
                         echo "Reservations: $reservation[0]";
 
                         //print license plate of car
-                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = :user");
+                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE username = :user");
                         $licenseSQL->bindParam(':user',$user);
                         $licenseSQL->execute();
                         $license = $licenseSQL->setFetchMode(PDO::FETCH_NUM);
@@ -143,14 +159,10 @@
 			</div>
 		</section>
 	</div>
-
-
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
-
 </body>
 </html>
