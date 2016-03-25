@@ -1,48 +1,5 @@
 <?php
-	session_start();
-	
-	//DB configuration Constants
-	define('_HOST_NAME_', 'localhost');
-	define('_USER_NAME_', 'root');
-	define('_DB_PASSWORD', '');
-	define('_DATABASE_NAME_', 'testDB');
-	
-	//PDO Database Connection
-	try {
-		$databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
-		$databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch(PDOException $e) {
-		echo 'ERROR: ' . $e->getMessage();
-	}
-	
-	if(isset($_POST['submit'])){
-		$errMsg = '';
-		//username and password sent from Form
-		$username = trim($_POST['username']);
-		$password = trim($_POST['password']);
-		
-		if($username == '')
-			$errMsg .= 'You must enter your Username<br>';
-		
-		if($password == '')
-			$errMsg .= 'You must enter your Password<br>';
-		
-		
-		if($errMsg == ''){
-			$records = $databaseConnection->prepare('SELECT id,username,password FROM  fgusers3 WHERE username = :username');
-			$records->bindParam(':username', $username);
-			$records->execute();
-			$results = $records->fetch(PDO::FETCH_ASSOC);
-			if(count($results) > 0 && password_verify($password, $results['password'])){
-				$_SESSION['username'] = $results['username'];
-				header('location:dashboard.php');
-				exit;
-			}else{
-				$errMsg .= 'Username and Password are not found<br>';
-			}
-		}
-	}
-
+	include('loginScript.php');
 ?>
 
 <!DOCTYPE html>
@@ -93,12 +50,12 @@
 			<article class="post">
 				<p>
 					<h2>Login here!</h2>
-					<form action="" method="post" accept-charset="UTF-8">
+					<form action="loginScript.php" method="post" accept-charset="UTF-8">
 						Username:<br>
 						<input type ="text" name="username"><br>
 						Password:<br>
 						<input type ="password" name="password"><br>
-						<input type="submit" value="Submit"><br>
+						<input type="submit" value="submit"><br>
 					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
 					</form>
 				</p>
