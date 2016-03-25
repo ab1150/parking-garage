@@ -21,6 +21,7 @@
 					<ul>
 						<li><a href="register.html">Register</a></li>
 						<li><a href="login.html">Log in</a></li>
+						<li><a href="reservation.php">Reservations</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
