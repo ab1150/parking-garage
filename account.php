@@ -88,26 +88,22 @@
 				<p>
 					<h2>My Info</h2>
                         <?php
-<<<<<<< HEAD
                         //start session
                         session_start();
 
-=======
-                        session_start();
->>>>>>> b7a574d5b8400de2da9fac6936fa6686b81c9fb0
-                        //connect to SQL host
-                        $host = "localhost";
-                        $SQLusername = "root";
-                        $password = "";
-                        $database = "parkingGarage";
-                        try {
-                            $connection = new PDO("mysql:host=$host;database=$database", $SQLusername, $password);
-                            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        }
-                        catch (PDOException $err)
-                        {
-                            echo $err->getMessage();
-                        }
+                    	//DB configuration Constants
+                    	define('_HOST_NAME_', 'localhost');
+                    	define('_USER_NAME_', 'root');
+                    	define('_DB_PASSWORD', '');
+                    	define('_DATABASE_NAME_', 'parkinggarage');
+
+                    	//PDO Database Connection
+                    	try {
+                    		$databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
+                    		$databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    	} catch(PDOException $e) {
+                    		echo 'ERROR: ' . $e->getMessage();
+                    	}
 
                         //store the username in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
@@ -120,22 +116,22 @@
                         $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE Username = :user");
                         $balanceSQL->bindParam(':user',$user);
                         $balanceSQL->execute();
-                        $balance = $balanceSQL->setFetchMode(PDO::FETCH_ASSOC);
-                        echo "Balance: $balance->fetch()";
+                        $balance = $balanceSQL->setFetchMode(PDO::FETCH_NUM);
+                        echo "Balance: $balance[0]";
 
                         //print any reservations
                         $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE Username = :user");
                         $reservationSQL->bindParam(':user',$user);
                         $reservationSQL->execute();
-                        $reservation = $reservationSQL->setFetchMode(PDO::FETCH_ASSOC);
-                        echo "Reservations: $reservation->fetch()";
+                        $reservation = $reservationSQL->setFetchMode(PDO::FETCH_NUM);
+                        echo "Reservations: $reservation[0]";
 
                         //print license plate of car
                         $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = :user");
                         $licenseSQL->bindParam(':user',$user);
                         $licenseSQL->execute();
-                        $license = $licenseSQL->setFetchMode(PDO::FETCH_ASSOC);
-                        echo "License Plate: $license->fetch()";
+                        $license = $licenseSQL->setFetchMode(PDO::FETCH_NUM);
+                        echo "License Plate: $license[0]";
 
                         //close connection
                         $connection->close();
