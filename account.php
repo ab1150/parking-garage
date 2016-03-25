@@ -88,6 +88,7 @@
 				<p>
 					<h2>My Info</h2>
                         <?php
+
                         //start session
                         session_start();
 
@@ -106,10 +107,6 @@
                     	}
 
                         //connect to SQL host
-						define('_HOST_NAME_', 'localhost');
-						define('_USER_NAME_', 'root');
-						define('_DB_PASSWORD', '');
-						define('_DATABASE_NAME_', 'parkinggarage');
                         try {
                             $connection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
                             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -118,7 +115,13 @@
                         {
                             echo $err->getMessage();
                         }
-
+                        function getSingleValue($tableName, $prop, $value, $columnName, $connection)
+							{
+							  $q = $connection->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
+							  $f = $q->fetch();
+							  $result = $f[$columnName];
+							  return $result;
+							}
                         //store the username in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
 
@@ -127,15 +130,20 @@
                         echo "Password: ****** <br>";
 
                         //send SQL queries to the database and print the result
-                        $SQL = $connection->prepare("SELECT Balance,Reservation,LicensePlate FROM accounts WHERE username = :user");
-                        $SQL->bindParam(':user',$user);
-                        $SQL->execute();
-                        $result = $SQL->setFetchMode(PDO::FETCH_NUM);
-                        $output = $SQL->fetch();
-                        echo "Balance: $output[0] <br> Reservation: $output[1] <br> LicensePlate: $output[2]";
+                        //print the balance
+                        $result = getSingleValue('accounts','username',$user,'Balance',$connection);
+                        echo "Balance: $result<br>";
+
+                        //print any reservations
+                         $result = getSingleValue('accounts','username',$user,'Reservation',$connection);
+                        echo "Reservations: $result<br>";
+
+                        //print license plate of car
+                         $result = getSingleValue('accounts','username',$user,'LicensePlate',$connection);
+                        echo "License Plate: $result<br>";
 
                         //close connection
-                        $connection->close();
+                        //$connection->close();
                     ?>
                     <br>
 					<a href="editinfo.html">Edit Info</a><p>
