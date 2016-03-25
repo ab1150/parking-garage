@@ -1,6 +1,14 @@
 <?php
 	session_start();
 	
+	function getSingleValue($tableName, $prop, $value, $columnName)
+	{
+	  $q = $conn->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
+	  $f = $q->fetch();
+	  $result = $f[$columnName];
+	  return $result;
+	}
+		
 	//DB configuration Constants
 	define('_HOST_NAME_', 'localhost');
 	define('_USER_NAME_', 'root');
