@@ -123,6 +123,7 @@
 							  $result = $f[$columnName];
 							  return $result;
 							}
+
                         //Store the username for the session in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
 
