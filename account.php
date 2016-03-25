@@ -115,6 +115,10 @@
                         {
                             echo $err->getMessage();
                         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e490bc406cc8d71605f9522d669538980c504a01
                         function getSingleValue($tableName, $prop, $value, $columnName, $connection)
 							{
 							  $q = $connection->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
@@ -122,7 +126,11 @@
 							  $result = $f[$columnName];
 							  return $result;
 							}
+<<<<<<< HEAD
                         //store the username in a variable for use in SQL commands
+=======
+                        //Store the username for the session in a variable for use in SQL commands
+>>>>>>> e490bc406cc8d71605f9522d669538980c504a01
                         $user = htmlspecialchars($_SESSION['username']);
 
                         //print username and password

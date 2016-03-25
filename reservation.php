@@ -7,7 +7,7 @@
 	.ey
 	 {
 	  display:inline-block;
-	 } 
+	 }
 	form{
 	    display:inline-block;
 	}
@@ -56,42 +56,24 @@
 			<article class="post">
 				<h2>Make Reservation</h2>
 				From:<br>
-				<select name="hour">
-					<option value="12">12</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-				</select>
-				<select name="time">
+                <input type="range" name="month" min="1" max="12" step="1">
+                <input type="range" name="day" min="1" max="31" step="1">
+                <input type="range" name="year" min="2016" max="2017" step="1">
+                <input type="range" name="hour" min="1" max="12" step="1">
+                <input type="range" name="minute" min="0" max="59" step="1">
+                <select name="daytime">
 					<option value="1">AM</option>
 					<option value="2">PM</option>
 				</select>
 				To:<br>
-				<select name="hour">
-					<option value="12">12</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-				</select>
-				<select name="time">
-					<option value="AM">AM</option>
-					<option value="PM">PM</option>
+                <input type="range" name="month" min="1" max="12" step="1">
+                <input type="range" name="day" min="1" max="31" step="1">
+                <input type="range" name="year" min="2016" max="2017" step="1">
+                <input type="range" name="hour" min="1" max="12" step="1">
+                <input type="range" name="minute" min="0" max="59" step="1">
+                <select name="daytime">
+					<option value="1">AM</option>
+					<option value="2">PM</option>
 				</select>
 				<input type = "submit" value = "Check Available Spots">
 			</article>
