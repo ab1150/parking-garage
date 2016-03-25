@@ -15,10 +15,10 @@
 		echo 'ERROR: ' . $e->getMessage();
 	}
 	
-	echo var_dump(isset($_POST["submit"]));
+	//echo var_dump(isset($_POST["submit"]));
 	if(isset($_POST["submit"])){
 		$errMsg = '';
-		//username and password sent from Form
+		//username and password sent from Form1
 		$username = trim($_POST['username']);
 		$password = trim($_POST['password']);
 		
@@ -32,8 +32,10 @@
 		if($errMsg == ''){
 			$records = $databaseConnection->prepare('SELECT id,username,password FROM  accounts WHERE username = :username AND password = :password');
 			$records->bindParam(':username', $username);
+			$records->bindParam(':password', $password);
 			$records->execute();
-			$results = $records->setFetchMode(PDO::FETCH_ASSOC);
+			$results = $records->fetch(PDO::FETCH_ASSOC);
+			echo count($results);
 			if(count($results) == 1){
 				$_SESSION['username'] = $results['username'];
 				header("Location: account.html");
@@ -41,6 +43,7 @@
 			}else{
 				$errMsg .= 'Username and Password are not found<br>';
 				header("Location: index.php");
+				exit;
 			}
 		}
 
