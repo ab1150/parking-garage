@@ -111,19 +111,19 @@
 
                         //send SQL queries to the database and print the result
                         //print the balance
-                        $balanceSQL = $connection->prepare("SELECT Balance FROM parkingGarage.accounts WHERE Username = $user");
+                        $balanceSQL = $connection->prepare("SELECT Balance FROM accounts WHERE Username = $user");
                         $balanceSQL->execute();
                         $balance = $balanceSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "Balance: $balance->fetch()";
 
                         //print any reservations
-                        $reservationSQL = $connection->prepare("SELECT Reservation FROM parkingGarage.accounts WHERE Username = $user");
+                        $reservationSQL = $connection->prepare("SELECT Reservation FROM accounts WHERE Username = $user");
                         $reservationSQL->execute();
                         $reservation = $reservationSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "Reservations: $reservation->fetch()";
 
                         //print license plate of car
-                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM parkingGarage.accounts WHERE Username = $user");
+                        $licenseSQL = $connection->prepare("SELECT LicensePlate FROM accounts WHERE Username = $user");
                         $licenseSQL->execute();
                         $license = $licenseSQL->setFetchMode(PDO::FETCH_ASSOC);
                         echo "License Plate: $license->fetch()";
