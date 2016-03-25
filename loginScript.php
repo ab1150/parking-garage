@@ -37,12 +37,12 @@
 			$results = $records->fetch(PDO::FETCH_ASSOC);
 			echo count($results);
 			if(count($results) == 1){
-				$_SESSION['username'] = $results['username'];
-				header("Location: account.html");
+
+				header("Location: index.html");
 				exit;			
 			}else{
-				$errMsg .= 'Username and Password are not found<br>';
-				header("Location: index.php");
+				$_SESSION['username'] = $results['username'];
+				header("Location: account.php");
 				exit;
 			}
 		}
