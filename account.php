@@ -131,7 +131,7 @@
                         $SQL->bindParam(':user',$user);
                         $SQL->execute();
                         $result = $SQL->setFetchMode(PDO::FETCH_NUM);
-                        $output = $result->fetch();
+                        $output = $SQL->fetch();
                         echo "Balance: $output[0] <br> Reservation: $output[1] <br> LicensePlate: $output[2]";
 
                         //close connection
