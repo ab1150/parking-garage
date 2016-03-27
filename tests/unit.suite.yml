@@ -5,5 +5,7 @@
 class_name: UnitTester
 modules:
     enabled:
+        - PHPBrowser:
+            url: http://localhost
         - Asserts
         - \Helper\Unit
