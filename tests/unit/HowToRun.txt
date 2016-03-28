@@ -2,4 +2,4 @@ Run files
 
 enter the following for the tests:
 
-php <filename.phar> run
+php codecept.phar run
