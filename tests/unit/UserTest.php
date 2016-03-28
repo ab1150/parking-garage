@@ -5,11 +5,14 @@ use Codeception\Util\Stub;
 /* UserTests tests any functions related to uers, such as usernames */
 class UserTest extends \Codeception\TestCase\UserTest {
 
+    /* Before stub creates an instance of email for use in tests */
     protected function _before()
     {
         $user = User::create();
     }
 
+    /* Blank after stub.
+       Blank because no tasks are required after each test. */
     protected function _after()
     {
     }
@@ -32,7 +35,7 @@ class UserTest extends \Codeception\TestCase\UserTest {
 
     /* Tests if user variable can reject a username that is blank.
        Inputs nothing to the username field.
-       Passes if user variable does not consider a null value valid. */
+       Passes if user variable does not consider a blank value valid. */
     public function testBlankName() {
         $user->username = "";
 		$this->assertFalse($user->validate(['username']));
