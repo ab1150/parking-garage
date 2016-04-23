@@ -91,7 +91,7 @@
 					<option value="2">PM</option>
 				</select>
 				<br>
-				<input type = "submit" name = "submit" value = "Check Available Spots">
+				<input type = "submit" name = "submit" value = "Submit">
 			</form>
 			</article>
 		</div>
