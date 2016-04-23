@@ -129,7 +129,42 @@
 				<p>
 					<h2>My Info</h2>
                         <?php
-                        
+/* Calvin's commit, ask about this
+                        //start session
+                        session_start();
+
+                    	//DB configuration Constants
+                    	define('_HOST_NAME_', 'localhost');
+                    	define('_USER_NAME_', 'root');
+                    	define('_DB_PASSWORD', '');
+                    	define('_DATABASE_NAME_', 'parkinggarage');
+
+                    	//PDO Database Connection
+                    	try {
+                    		$databaseConnection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
+                    		$databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    	} catch(PDOException $e) {
+                    		echo 'ERROR: ' . $e->getMessage();
+                    	}
+
+                        //connect to SQL host
+                        try {
+                            $connection = new PDO('mysql:host='._HOST_NAME_.';dbname='._DATABASE_NAME_, _USER_NAME_, _DB_PASSWORD);
+                            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        }
+                        catch (PDOException $err)
+                        {
+                            echo $err->getMessage();
+                        }
+
+                        function getSingleValue($tableName, $prop, $value, $columnName, $connection)
+							{
+							  $q = $connection->query("SELECT `$columnName` FROM `$tableName` WHERE $prop='".$value."'");
+							  $f = $q->fetch();
+							  $result = $f[$columnName];
+							  return $result;
+							}
+*/
                         //store the username in a variable for use in SQL commands
                         //Store the username for the session in a variable for use in SQL commands
                         $user = htmlspecialchars($_SESSION['username']);
