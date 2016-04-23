@@ -52,49 +52,43 @@
 					</div>
 				</header>
 				<?php
-				echo "<table style='border: solid 1px black;'>";
-				echo "<tr><th>Spot Number</th><th>Status</th><th>Username</th><th>Start Time</th><th>Price</th></tr>";
-
-				class TableRows extends RecursiveIteratorIterator { 
-				    function __construct($it) { 
-				        parent::__construct($it, self::LEAVES_ONLY); 
-				    }
-
-				    function current() {
-				        return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
-				    }
-
-				    function beginChildren() { 
-				        echo "<tr>"; 
-				    } 
-
-				    function endChildren() { 
-				        echo "</tr>" . "\n";
-				    } 
-				} 
+				$output = "<table style='border: solid 1px black;'>";
 
 				$servername = "localhost";
 				$username = "root";
 				$password = "";
 				$dbname = "parkingGarage";
 
-				try {
-				    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+				$cols = 10;
+				$cnt = 0;
+				$status = 'Status';
+				try
+				{		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 				    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				    $stmt = $conn->prepare("SELECT SpotNumber, Status, Username, StartTime, Price FROM parkingSpaces"); 
-				    $stmt->execute();
+				    $stmt = $conn->prepare("SELECT SpotNumber, Status FROM parkingSpaces");
+						$stmt->bindParam(':Status',$status,PDO::PARAM_INT);
+						$stmt->execute();
 
 				    // set the resulting array to associative
-				    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-				    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
-				        echo $v;
-				    }
-				}
+						while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+						{
+									if($status == 0)
+					        	$output .= "<td height='40px'><span style='color:green'>{$row['SpotNumber']}</span></td>";
+									if($status == 1)
+										$output .= "<td height='40px'><span style='color:red'>{$row['SpotNumber']}</span></td>";
+									if($status == 2)
+										$output .= "<td height='40px'><span style='color:gray'>{$row['SpotNumber']}</span></td>";
+					        $cnt++;
+					        if($cnt % $cols == 0)
+					         { $output .= "</tr><tr>"; }
+					  }
+				  }
 				catch(PDOException $e) {
 				    echo "Error: " . $e->getMessage();
 				}
 				$conn = null;
-				echo "</table>";
+				$output .= "</tr></table>";
+  			echo $output;
 				?>
 			</article>
 		</div>
