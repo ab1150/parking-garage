@@ -47,11 +47,17 @@
 			<article class="post">
 				<header>
 					<div class="title">
-						<h2>About us</h2>
-						<p>Group 6: Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung <p>
+						<h2>Parking Garage Map</h2>
+						<!--<p>Group 6: Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung <p>-->
 					</div>
 				</header>
+
+				<h2>Available</h2>
+
+
+
 				<?php
+
 				$output = "<table style='border: solid 1px black;'>";
 
 				$servername = "localhost";
@@ -81,14 +87,17 @@
 				}
 				$conn = null;
 				$output .= "</tr></table>";
-  			echo $output;
+
 
 			//	$cols = 10;
 			//	$cnt = 0;
 			//	$status = 'Status';
+
+
+			$output .= 	"<h2>All Spots</h2>";
 				try
 				{
-						$output = "<table style='border: solid 1px black;'>";
+						$output .= "<table style='border: solid 1px black;'>";
 						$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						$stmt = $conn->prepare("SELECT SpotNumber FROM parkingspaces");
@@ -96,7 +105,7 @@
 
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 						{
-									$output .= "<td height='40px'><span style='color:red'>{$row['SpotNumber']}</span></td>";
+									$output .= "<td height='40px'><span style='color:grey'>{$row['SpotNumber']}</span></td>";
 									$cnt++;
 									if($cnt % $cols == 0)
 									 { $output .= "</tr><tr>"; }
@@ -118,6 +127,7 @@
 				<header>
 					<a href="#" class="image"><img src="images/0104.jpg"></a>
 					<h2>George Street Garage</h2>
+					<p>Group 6: Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung <p>
 			</section>
 		</section>
 	</div>
