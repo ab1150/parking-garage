@@ -65,19 +65,12 @@
 				try
 				{		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 				    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				    $stmt = $conn->prepare("SELECT SpotNumber, Status FROM parkingSpaces");
-						$stmt->bindParam(':Status',$status,PDO::PARAM_INT);
+				    $stmt = $conn->prepare("SELECT SpotNumber FROM parkingspaces WHERE Status ='VACANT'");
 						$stmt->execute();
 
-				    // set the resulting array to associative
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 						{
-									if($status == 0)
-					        	$output .= "<td height='40px'><span style='color:green'>{$row['SpotNumber']}</span></td>";
-									if($status == 1)
-										$output .= "<td height='40px'><span style='color:red'>{$row['SpotNumber']}</span></td>";
-									if($status == 2)
-										$output .= "<td height='40px'><span style='color:gray'>{$row['SpotNumber']}</span></td>";
+					        $output .= "<td height='40px'><span style='color:green'>{$row['SpotNumber']}</span></td>";
 					        $cnt++;
 					        if($cnt % $cols == 0)
 					         { $output .= "</tr><tr>"; }
@@ -89,6 +82,33 @@
 				$conn = null;
 				$output .= "</tr></table>";
   			echo $output;
+
+			//	$cols = 10;
+			//	$cnt = 0;
+			//	$status = 'Status';
+				try
+				{
+						$output = "<table style='border: solid 1px black;'>";
+						$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+						$stmt = $conn->prepare("SELECT SpotNumber FROM parkingspaces");
+						$stmt->execute();
+
+						while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+						{
+									$output .= "<td height='40px'><span style='color:red'>{$row['SpotNumber']}</span></td>";
+									$cnt++;
+									if($cnt % $cols == 0)
+									 { $output .= "</tr><tr>"; }
+						}
+					}
+				catch(PDOException $e) {
+						echo "Error: " . $e->getMessage();
+				}
+				$conn = null;
+				$output .= "</tr></table>";
+				echo $output;
+
 				?>
 			</article>
 		</div>
