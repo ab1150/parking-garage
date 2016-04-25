@@ -51,10 +51,7 @@
 						<!--<p>Group 6: Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung <p>-->
 					</div>
 				</header>
-
 				<h2>Available</h2>
-
-
 
 				<?php
 

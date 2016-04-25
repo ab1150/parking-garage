@@ -86,10 +86,10 @@
 						<a>Current occupancies</a><br><br>
 						<a>My Reservations</a><br>
 							<?php
-							$user = htmlspecialchars($_SESSION['username']);
-							$result = getSingleValue('accounts','username',$user,'Reservation',$connection);
-	                        echo "Reservation time: $result<br><br>";
-	                        ?>
+  							$user = htmlspecialchars($_SESSION['username']);
+  							$result = getSingleValue('accounts','username',$user,'Reservation',$connection);
+  	            echo "Reservation time: $result<br><br>";
+	            ?>
 						<!--<p>Time Remaining</p><br>-->
 						<!-- clock -->
 						<script>
