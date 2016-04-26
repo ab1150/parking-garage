@@ -1,5 +1,4 @@
 <?php
-	include("reservationScript.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,10 +56,11 @@
 		<!-- Main -->
 		<div id="main">
 			<article class="post">
-				<h2>Make A Reservation</h2>
-				<form action="reservationScript.php" method="POST">
-					Start Time: <input type="datetime-local" name="startTime"><br>
-					End Time: <input type="datetime-local" name="endTime"><br>
+				<h2>Mock Input for a Parking Spot Sensor</h2>
+				<form action="parkCameraMockScript.php" method="POST">
+				Plate number: <input type="number" name="plateNum" required="required"><br>
+				Start Time: <input type="datetime-local" name="startTime"><br>
+				End Time: <input type="datetime-local" name="endTime"><br>
 				<br>
 				<input type = "submit" name = "submit" value = "Submit">
 			</form>
