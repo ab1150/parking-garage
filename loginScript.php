@@ -31,7 +31,7 @@
 
 
 		if($errMsg == ''){
-			$records = $databaseConnection->prepare('SELECT id,username,password FROM  accounts WHERE username = :username AND password = :password');
+			$records = $databaseConnection->prepare('SELECT username,password FROM  accounts WHERE username = :username AND password = :password');
 			$records->bindParam(':username', $username);
 			$records->bindParam(':password', $password);
 			$records->execute();
