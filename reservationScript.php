@@ -19,24 +19,22 @@ session_start();
 	}
 
 	if(isset($_POST["submit"])) {
+		//Find available reservation spot and create if available, return error if unavailable
+		//We want all reservations where startime is between in and out AND/OR endtime is between in and out
+		$findSlot = $databaseConnection->prepare("SELECT * FROM reservations WHERE (startTime BETWEEN :in AND :out) OR (endTime between :in AND :out)");
+		$findSlot->bindParam(':in',$_POST["startTime"]);
+		$findSlot->bindParam(':out',$_POST["endTime"]);
+		$findSlot->execute();
 
+		//Input the FROM time to the SQL database
 
-	//Find available reservation spot and create if available, return error if unavailable
-	//We want all reservations where startime is between in and out AND/OR endtime is between in and out
-	$findSlot = $databaseConnection->prepare("SELECT * FROM reservations WHERE (startTime BETWEEN :in AND :out) OR (endTime between :in AND :out)");
-	$findSlot->bindParam(':in',$_POST["startTime"]);
-	$findSlot->bindParam(':out',$_POST["endTime"]);
-	$findSlot->execute();
+		//Prepare the SQL commands
+		$user = $_SESSION['username'];
+		$writeTime = $databaseConnection->prepare("UPDATE accounts SET Reservation = :fromTime WHERE Username = :username");
+		$writeTime->bindParam(':fromTime', $_POST["startTime"]);
+		$writeTime->bindParam(':username', $user);
+		$writeTime->execute();
 
-	//Input the FROM time to the SQL database
-
-	//Prepare the SQL commands
-	$user = $_SESSION['username'];
-	$writeTime = $databaseConnection->prepare("UPDATE accounts SET Reservation = :fromTime WHERE Username = :username");
-	$writeTime->bindParam(':fromTime', $_POST["startTime"]);
-	$writeTime->bindParam(':username', $user);
-	$writeTime->execute();
-
-	header("Location: account.php");
+		header("Location: account.php");
 	}
 ?>
