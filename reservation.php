@@ -87,8 +87,8 @@
                 :
                 <input type="number" name="outMinute" min="0" max="59" step="1" required="required">
                 <select name="outDaytime">
-					<option value="1">AM</option>
-					<option value="2">PM</option>
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
 				</select>
 				<br>
 				<input type = "submit" name = "submit" value = "Submit">

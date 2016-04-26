@@ -19,78 +19,85 @@ session_start();
 	}
 
 	if(isset($_POST["submit"])) {
-	//Assign the values recieved from reservation.php to variables
-	$inMonth = htmlspecialchars($_POST['inMonth']);
-	$inDay = htmlspecialchars($_POST['inDay']);
-	$inYear = htmlspecialchars($_POST['inYear']);
-	$inHour = htmlspecialchars($_POST['inHour']);
-	$inMinute = htmlspecialchars($_POST['inMinute']);
-	$outMonth = htmlspecialchars($_POST['outMonth']);
-	$outDay = htmlspecialchars($_POST['outDay']);
-	$outYear = htmlspecialchars($_POST['outYear']);
-	$outHour = htmlspecialchars($_POST['outHour']);
-	$outMinute = htmlspecialchars($_POST['outMinute']);
-	$inDaytime = htmlspecialchars($_POST['inDaytime']);
-	$outDaytime = htmlspecialchars($_POST['outDaytime']);
+    	//Assign the values recieved from reservation.php to variables
+    	$inMonth = htmlspecialchars($_POST['inMonth']);
+    	$inDay = htmlspecialchars($_POST['inDay']);
+    	$inYear = htmlspecialchars($_POST['inYear']);
+    	$inHour = htmlspecialchars($_POST['inHour']);
+    	$inMinute = htmlspecialchars($_POST['inMinute']);
+    	$outMonth = htmlspecialchars($_POST['outMonth']);
+    	$outDay = htmlspecialchars($_POST['outDay']);
+    	$outYear = htmlspecialchars($_POST['outYear']);
+    	$outHour = htmlspecialchars($_POST['outHour']);
+    	$outMinute = htmlspecialchars($_POST['outMinute']);
+    	$inDaytime = htmlspecialchars($_POST['inDaytime']);
+    	$outDaytime = htmlspecialchars($_POST['outDaytime']);
 
-	//convert to datetime format
-	$AM = "AM";
-	$PM = "PM";
+    	//convert to datetime format
+    	$AM = "AM";
+    	$PM = "PM";
 
-	//convert the FROM time
-	str_pad($inMinute,2,"0",STR_PAD_LEFT);
-	if (strcmp($inDaytime,$AM) == 0 )	{
-		if ($inHour == 12)	{
-			$in = $inYear."-".$inMonth."-".$inDay." 00:".$inMinute.":00";
-		}
-		else{
-			str_pad($inHour,2,"0",STR_PAD_LEFT);
-			$in = $inYear."-".$inMonth."-".$inDay." ".$inHour.":".$inMinute.":00";
-		}
-	}
-	else {
-		if ($inHour == 12)	{
-			$in = $inYear."-".$inMonth."-".$inDay." ".($inHour+12).":".$inMinute.":00";
-		}
-		else {
-			$in = $inYear."-".$inMonth."-".$inDay." ".($inHour+12).":".$inMinute.":00";
-		}
-	}
+    	//convert the FROM time
+    	$inMinute = str_pad($inMinute,2,"0",STR_PAD_LEFT);
+        $inMonth = str_pad($inMonth,2,"0",STR_PAD_LEFT);
+        $inDay = str_pad($inDay,2,"0",STR_PAD_LEFT);
+    	if (strcmp($inDaytime,$AM) == 0 )	{
+    		if ($inHour == 12)	{
+    			$in = $inYear."-".$inMonth."-".$inDay." 00:".$inMinute.":00";
+    		}
+    		else {
+    			$inHour = str_pad($inHour,2,"0",STR_PAD_LEFT);
+    			$in = $inYear."-".$inMonth."-".$inDay." ".$inHour.":".$inMinute.":00";
+    		}
+    	}
+    	else {
+    		if ($inHour == 12)	{
+    			$in = $inYear."-".$inMonth."-".$inDay." ".($inHour+12).":".$inMinute.":00";
+    		}
+    		else {
+    			$in = $inYear."-".$inMonth."-".$inDay." ".($inHour+12).":".$inMinute.":00";
+    		}
+    	}
 
-	//convert the TO time
-	str_pad($outMinute,2,"0",STR_PAD_LEFT);
-	if (strcmp($outDaytime,$AM) == 0 )	{
-		if ($outHour == 12)	{
-			$out = $outYear."-".$outMonth."-".$outDay." 00:".$outMinute.":00";
-		}
-		else{
-			str_pad($inHour,2,"0",STR_PAD_LEFT);
-			$out = $outYear."-".$outMonth."-".$outDay." ".$outHour.":".$outMinute.":00";
-		}
-	}
-	else {
-		if ($outHour == 12)	{
-			$out = $outYear."-".$outMonth."-".$outDay." ".$outHour.":".$outMinute.":00";
-		}
-		else {
-			$out = $outYear."-".$outMonth."-".$outDay." ".($outHour).":".$outMinute.":00";
-		}
-	}
+    	//convert the TO time
+    	$outMinute = str_pad($outMinute,2,"0",STR_PAD_LEFT);
+        $outMonth = str_pad($outMonth,2,"0",STR_PAD_LEFT);
+        $outDay = str_pad($outDay,2,"0",STR_PAD_LEFT);
+    	if (strcmp($outDaytime,$AM) == 0 )	{
+    		if ($outHour == 12)	{
+    			$out = $outYear."-".$outMonth."-".$outDay." 00:".$outMinute.":00";
+    		}
+    		else {
+    			$outHour = str_pad($outHour,2,"0",STR_PAD_LEFT);
+    			$out = $outYear."-".$outMonth."-".$outDay." ".$outHour.":".$outMinute.":00";
+    		}
+    	}
+    	else {
+    		if ($outHour == 12)	{
+    			$out = $outYear."-".$outMonth."-".$outDay." ".$outHour.":".$outMinute.":00";
+    		}
+    		else {
+    			$out = $outYear."-".$outMonth."-".$outDay." ".($outHour+12).":".$outMinute.":00";
+    		}
+    	}
 
-	//Find available reservation spot and create if available, return error if unavailable
-	//We want all reservations where startime is between in and out AND/OR endtime is between in and out
-	$findSlot = $databaseConnection->prepare("SELECT startTime,endTime,spotNumber FROM reservations WHERE (($in<=startTime) AND (startTime<= $out)) OR ((endTime>=$in) AND (endTime<=$out))");
-	$findSlot->execute();
+    	//Find available reservation spot and create if available, return error if unavailable
+    	//We want all reservations where startime is between in and out AND/OR endtime is between in and out
+    	$findSlot = $databaseConnection->prepare("SELECT startTime,endTime,spotNumber FROM reservations WHERE (($in <= startTime) AND (startTime <= $out)) OR ((endTime >= $in) AND (endTime <= $out))");
+    	$findSlot->execute();
 
-	//Input the FROM time to the SQL database
+    	//Input the FROM time to the SQL database
 
-	//Prepare the SQL commands
-	$user = $_SESSION['username'];
-	$writeTime = $databaseConnection->prepare("UPDATE accounts SET Reservation = :fromTime WHERE Username = :username");
-	$writeTime->bindParam(':fromTime', $in);
-	$writeTime->bindParam(':username', $user);
-	$writeTime->execute();
+    	//Prepare the SQL commands
+        if ($_SESSION['username'] != NULL) {
+            $user = $_SESSION['username'];
+        }
+    	$writeTime = $databaseConnection->prepare("UPDATE accounts SET StartTime = :fromTime, EndTime = :toTime WHERE Username = :username");
+    	$writeTime->bindParam(':fromTime', $in);
+        $writeTime->bindParam(':toTime', $in);
+    	$writeTime->bindParam(':username', $user);
+    	$writeTime->execute();
 
-	header("Location: account.php");
-	}
+    	header("Location: account.php");
+    }
 ?>

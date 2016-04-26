@@ -87,7 +87,7 @@
 						<a>My Reservations</a><br>
 							<?php
   							$user = htmlspecialchars($_SESSION['username']);
-  							$result = getSingleValue('accounts','username',$user,'Reservation',$connection);
+  							$result = getSingleValue('accounts','username',$user,'StartTime',$connection);
   	            echo "Reservation time: $result<br><br>";
 	            ?>
 						<!--<p>Time Remaining</p><br>-->
@@ -179,7 +179,7 @@
                         echo "Balance: $result<br>";
 
                         //print any reservations
-                         $result = getSingleValue('accounts','username',$user,'Reservation',$connection);
+                         $result = getSingleValue('accounts','username',$user,'StartTime',$connection);
                         echo "Reservations: $result<br>";
 
                         //print license plate of car
