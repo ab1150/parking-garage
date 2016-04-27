@@ -1,19 +1,12 @@
 <?php
+	include('loginScript.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Parking Reservation</title>
+<title>Parking Login</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-<style>
-	.ey
-	 {
-	  display:inline-block;
-	 }
-	form{
-	    display:inline-block;
-	}
-</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -23,7 +16,6 @@
 					<ul>
 						<li><a href="register.php">Register</a></li>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="reservation.php">Reservations</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -56,23 +48,17 @@
 		<!-- Main -->
 		<div id="main">
 			<article class="post">
-				<h2>Mock Input for a Parking Spot Sensor</h2>
-				<form action="parkCameraMockScript.php" method="POST">
-				Plate number: <input type="number" name="plateNum" required="required"><br>
-				Spot number: <input type="number" name="spotNum"><br>
-				Start Time: <input type="datetime-local" name="startTime"><br>
-				End Time: <input type="datetime-local" name="endTime"><br>
-				<br>
-				<input type = "submit" name = "submit" value = "Park">
-			</form>
-
-			<h2>Mock Output for a Parking Spot Sensor</h2>
-			<form action="parkCameraMockScript.php" method="POST">
-			Spot number: <input type="number" name="spotNum"><br>
-			End Time: <input type="datetime-local" name="endTime"><br>
-			<br>
-			<input type = "submit" name = "submit2" value = "Check out">
-		</form>
+				<p>
+					<h2>Login here!</h2>
+					<form action="loginScript.php" method="post" accept-charset="UTF-8">
+						Username:<br>
+						<input type ="text" name="username"/><br>
+						Password:<br>
+						<input type ="password" name="password"/><br>
+						<input type="submit" value="submit" name="submit"/><br>
+					</form>
+					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
+				</p>
 			</article>
 		</div>
 
@@ -93,5 +79,5 @@
 			<script src="assets/js/main.js"></script>
 
 
-</body>
+	</body>
 </html>
