@@ -21,7 +21,7 @@ if(isset($_POST["submit"])){
   //username and password sent from Form1
   $plateNum = trim($_POST['plateNum']);
   $startTime = trim($_POST['startTime']);
-  $endTime = trim($_POST['endTime']);
+//  $endTime = trim($_POST['endTime']);
   $spotNum = trim($_POST['spotNum']);
 
   // update corresponding account's startTime
@@ -38,42 +38,40 @@ if(isset($_POST["submit"])){
   $username = $username['username'];
   print_r($username);
 
-  $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username WHERE SpotNumber= :spotNum');
+  $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username,  StartTime=:startTime, Status=2, LicensePlate = :plateNum WHERE SpotNumber= :spotNum');
   $relate->bindParam('username',$username);
   $relate->bindParam('spotNum',$spotNum);
+  $relate->bindParam('startTime', $startTime);
+  $relate->bindParam('plateNum', $plateNum);
   $relate->execute();
 
-  // set corresponding parking space in parkingspaces to occupied
-  $records = $databaseConnection->prepare('UPDATE parkingspaces SET StartTime=:startTime, Status=2 WHERE SpotNumber = :spotNum');
-  $records->bindParam('spotNum', $spotNum);
-  $records->bindParam('startTime', $startTime);
-  $records->execute();
 }
 
 
 //submit 2 is the checkout form
 if(isset($_POST["submit2"])){
-  $errMsg = '';
   //username and password sent from Form1
   $endTime = trim($_POST['endTime']);
   $spotNum = trim($_POST['spotNum']);
 
   // update corresponding account's startTime
-  $records = $databaseConnection->prepare('UPDATE accounts SET startTime=:startTime WHERE LicensePlate = :plateNum');
-  $records->bindParam(':plateNum', $plateNum);
-  $records->bindParam(':startTime', $startTime);
+//  $records = $databaseConnection->prepare('SELECT ')
+
+  $records = $databaseConnection->prepare('SELECT LicensePlate FROM parkingspaces WHERE SpotNumber = :spotNum');
+  $records->bindParam(':spotNum', $spotNum);
   $records->execute();
+  $plateNumArray = $records->fetch(PDO::FETCH_ASSOC);
+  $plateNum = $plateNumArray['LicensePlate'];
 
-
-
-
-
+  $records = $databaseConnection->prepare('UPDATE accounts SET endTime= :endTime WHERE LicensePlate = :plateNum');
+  $records->bindParam(':plateNum', $plateNum);
+  $records->bindParam(':endTime', $endTime);
+  $records->execute();
 
   // set corresponding parking space in parkingspaces to occupied
-  $records = $databaseConnection->prepare('UPDATE parkingspaces SET StartTime=:startTime, Status=2, username= WHERE SpotNumber = :spotNum');
+  $records = $databaseConnection->prepare('UPDATE parkingspaces SET startTime = NULL, LicensePlate = NULL, Status=1, username = NULL WHERE SpotNumber = :spotNum');
   $records->bindParam('spotNum', $spotNum);
-  $records->bindParam('startTime', $startTime);
   $records->execute();
 }
-//header("Location: index.php");
+header("Location: index.php");
 ?>

@@ -61,7 +61,6 @@
 				Plate number: <input type="number" name="plateNum" required="required"><br>
 				Spot number: <input type="number" name="spotNum"><br>
 				Start Time: <input type="datetime-local" name="startTime"><br>
-				End Time: <input type="datetime-local" name="endTime"><br>
 				<br>
 				<input type = "submit" name = "submit" value = "Park">
 			</form>
