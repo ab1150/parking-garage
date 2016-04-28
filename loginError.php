@@ -56,7 +56,7 @@
 						<input type ="text" name="username"/><br>
 						Password:<br>
 						<input type ="password" name="password"/><br>
-						<font color = "red">Invalid username or password. </font><br>
+						<font color = "red">Invalid username or password. </font><br><br>
 						<input type="submit" value="submit" name="submit"/><br>
 					</form>
 					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
