@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 28, 2016 at 10:32 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.5
+-- Host: 127.0.0.1
+-- Generation Time: Apr 28, 2016 at 11:53 PM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,6 +35,7 @@ CREATE TABLE `accounts` (
   `Reservation` datetime DEFAULT NULL,
   `LicensePlate` char(7) NOT NULL,
   `startTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `endTime` datetime DEFAULT NULL,
   `paymentneeded` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,10 +43,10 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`, `paymentneeded`) VALUES
-(1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00', 0),
-(0, 1, 'username', 'password', 100, '1995-04-12 04:00:00', '1234567', '2016-04-29 14:22:00', 0),
-(0, 2, 'richUser', 'password', 10000000, '0000-00-00 00:00:00', '2345678', '0000-00-00 00:00:00', 0);
+INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`, `endTime`, `paymentneeded`) VALUES
+(1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00', NULL, 0),
+(0, 1, 'username', 'password', 100, '1995-04-12 04:00:00', '1234567', '2016-04-29 14:22:00', NULL, 0),
+(0, 2, 'richUser', 'password', 10000000, '0000-00-00 00:00:00', '2345678', '0003-03-03 15:12:00', '4444-04-04 14:22:00', 0);
 
 -- --------------------------------------------------------
 
@@ -57,6 +58,7 @@ CREATE TABLE `parkingspaces` (
   `SpotNumber` int(11) NOT NULL,
   `Status` enum('VACANT','OCCUPIED','RESERVED','') DEFAULT 'VACANT',
   `Username` char(20) DEFAULT NULL,
+  `LicensePlate` int(11) NOT NULL,
   `StartTime` datetime DEFAULT NULL,
   `Price` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -65,14 +67,14 @@ CREATE TABLE `parkingspaces` (
 -- Dumping data for table `parkingspaces`
 --
 
-INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `StartTime`, `Price`) VALUES
-(100, 'OCCUPIED', NULL, '2016-03-16 09:00:00', '3'),
-(101, 'OCCUPIED', '', NULL, '3'),
-(103, 'VACANT', NULL, NULL, NULL),
-(104, 'OCCUPIED', NULL, '2016-04-29 14:22:00', NULL),
-(106, 'VACANT', NULL, NULL, NULL),
-(107, 'VACANT', NULL, NULL, NULL),
-(109, 'VACANT', NULL, NULL, NULL);
+INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `LicensePlate`, `StartTime`, `Price`) VALUES
+(100, 'OCCUPIED', NULL, 0, '2016-03-16 09:00:00', '3'),
+(101, 'OCCUPIED', '', 0, NULL, '3'),
+(103, 'VACANT', NULL, 0, NULL, NULL),
+(104, 'OCCUPIED', NULL, 0, '2016-04-29 14:22:00', NULL),
+(106, 'VACANT', NULL, 0, NULL, NULL),
+(107, 'VACANT', NULL, 0, NULL, NULL),
+(109, 'VACANT', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -98,10 +100,10 @@ INSERT INTO `reservations` (`startTime`, `endTime`, `spotNumber`, `username`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unavTab`
+-- Table structure for table `unavtab`
 --
 
-CREATE TABLE `unavTab` (
+CREATE TABLE `unavtab` (
   `startTime` datetime NOT NULL,
   `endTime` datetime NOT NULL,
   `SpotNum` int(11) NOT NULL,
@@ -109,10 +111,10 @@ CREATE TABLE `unavTab` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `unavTab`
+-- Dumping data for table `unavtab`
 --
 
-INSERT INTO `unavTab` (`startTime`, `endTime`, `SpotNum`, `username`) VALUES
+INSERT INTO `unavtab` (`startTime`, `endTime`, `SpotNum`, `username`) VALUES
 ('1995-04-12 04:00:00', '1995-04-12 08:00:00', 100, 'username');
 
 --
