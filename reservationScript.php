@@ -21,10 +21,13 @@ session_start();
 	if(isset($_POST["submit"])) {
 		//Find available reservation spot and create if available, return error if unavailable
 		//We want all reservations where startime is between in and out AND/OR endtime is between in and out
-		$findSlot = $databaseConnection->prepare("SELECT * FROM reservations WHERE (startTime BETWEEN :in AND :out) OR (endTime between :in AND :out)");
-		$findSlot->bindParam(':in',$_POST["startTime"]);
-		$findSlot->bindParam(':out',$_POST["endTime"]);
+		$findSlot = $databaseConnection->prepare('SELECT * INTO unavTab FROM reservations WHERE (startTime BETWEEN :in AND :out) OR (endTime between :in AND :out) OR ((startTime < :in) AND (endTime > :in))');
+		$findSlot->bindParam(':in',$_POST['startTime']);
+		$findSlot->bindParam(':out',$_POST['endTime']);
 		$findSlot->execute();
+
+		$avTab = $databaseConnection->prepare('SELECT SpotNumber FROM unavTab FULL OUTER JOIN parkingspaces ON unavTab.SpotNumber = parkingspaces.SpotNumber WHERE unavTab.SpotNumber IS null OR parkingspaces.SpotNumber IS null ')
+		$avTab->execute();
 
 		//Input the FROM time to the SQL database
 
