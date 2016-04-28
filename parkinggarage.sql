@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 27, 2016 at 10:15 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Host: localhost
+-- Generation Time: Apr 28, 2016 at 10:32 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,24 +27,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accounts` (
-  `isAdmin` int(11) NOT NULL,
+  `isAdmin` int(11) NOT NULL DEFAULT '0',
   `id` int(10) NOT NULL,
   `Username` char(20) NOT NULL,
   `Password` char(20) NOT NULL,
-  `Balance` float NOT NULL,
+  `Balance` float NOT NULL DEFAULT '0',
   `Reservation` datetime DEFAULT NULL,
   `LicensePlate` char(7) NOT NULL,
-  `startTime` datetime NOT NULL
+  `startTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `paymentneeded` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`) VALUES
-(1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00'),
-(0, 1, 'username', 'password', 100, '2016-04-27 01:01:00', '1234567', '2016-04-29 14:22:00'),
-(0, 2, 'richUser', 'password', 10000000, '0000-00-00 00:00:00', '2345678', '0000-00-00 00:00:00');
+INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`, `paymentneeded`) VALUES
+(1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00', 0),
+(0, 1, 'username', 'password', 100, '1995-04-12 04:00:00', '1234567', '2016-04-29 14:22:00', 0),
+(0, 2, 'richUser', 'password', 10000000, '0000-00-00 00:00:00', '2345678', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -82,9 +83,37 @@ INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `StartTime`, `P
 CREATE TABLE `reservations` (
   `startTime` datetime NOT NULL,
   `endTime` datetime NOT NULL,
-  `spotNumber` int(11) NOT NULL,
+  `spotNumber` int(11) NOT NULL DEFAULT '0',
   `username` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`startTime`, `endTime`, `spotNumber`, `username`) VALUES
+('1995-04-12 04:00:00', '1995-04-12 08:00:00', 100, 'username'),
+('1995-04-12 04:00:00', '1995-04-12 08:00:00', 101, 'username');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unavTab`
+--
+
+CREATE TABLE `unavTab` (
+  `startTime` datetime NOT NULL,
+  `endTime` datetime NOT NULL,
+  `SpotNum` int(11) NOT NULL,
+  `username` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `unavTab`
+--
+
+INSERT INTO `unavTab` (`startTime`, `endTime`, `SpotNum`, `username`) VALUES
+('1995-04-12 04:00:00', '1995-04-12 08:00:00', 100, 'username');
 
 --
 -- Indexes for dumped tables
@@ -101,6 +130,12 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `parkingspaces`
   ADD PRIMARY KEY (`SpotNumber`);
+
+--
+-- Indexes for table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`spotNumber`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
