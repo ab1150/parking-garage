@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -29,12 +30,27 @@ if(isset($_POST["submit"])){
   $records->bindParam('startTime', $startTime);
   $records->execute();
 
+  //need code here to update username colmun in parkinggarage table
+  $relate = $databaseConnection->prepare('SELECT username FROM accounts WHERE LicensePlate = :plateNum');
+  $relate->bindParam(':plateNum',$plateNum);
+  $relate->execute();
+  $username = $relate->fetch(PDO::FETCH_ASSOC);
+  $username = $username['username'];
+  print_r($username);
+
+  $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username WHERE SpotNumber= :spotNum');
+  $relate->bindParam('username',$username);
+  $relate->bindParam('spotNum',$spotNum);
+  $relate->execute();
+
   // set corresponding parking space in parkingspaces to occupied
   $records = $databaseConnection->prepare('UPDATE parkingspaces SET StartTime=:startTime, Status=2 WHERE SpotNumber = :spotNum');
   $records->bindParam('spotNum', $spotNum);
   $records->bindParam('startTime', $startTime);
   $records->execute();
 }
+
+
 //submit 2 is the checkout form
 if(isset($_POST["submit2"])){
   $errMsg = '';
@@ -44,11 +60,14 @@ if(isset($_POST["submit2"])){
 
   // update corresponding account's startTime
   $records = $databaseConnection->prepare('UPDATE accounts SET startTime=:startTime WHERE LicensePlate = :plateNum');
-  $records->bindParam('plateNum', $plateNum);
-  $records->bindParam('startTime', $startTime);
+  $records->bindParam(':plateNum', $plateNum);
+  $records->bindParam(':startTime', $startTime);
   $records->execute();
 
-  //need code here to update username colmun in parkinggarage table
+
+
+
+
 
   // set corresponding parking space in parkingspaces to occupied
   $records = $databaseConnection->prepare('UPDATE parkingspaces SET StartTime=:startTime, Status=2, username= WHERE SpotNumber = :spotNum');
@@ -56,5 +75,5 @@ if(isset($_POST["submit2"])){
   $records->bindParam('startTime', $startTime);
   $records->execute();
 }
-header("Location: index.php");
+//header("Location: index.php");
 ?>

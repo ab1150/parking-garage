@@ -1,11 +1,11 @@
 <?php
-	include('loginScript.php');
+	include('exitScript.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Parking Login</title>
+<title>Exit Camera</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -49,15 +49,14 @@
 		<div id="main">
 			<article class="post">
 				<p>
-					<h2>Login here!</h2>
-					<form action="loginScript.php" method="post" accept-charset="UTF-8">
-						Username:<br>
-						<input type ="text" name="username"/><br>
-						Password:<br>
-						<input type ="password" name="password"/><br>
+					<h2>Exit Camera</h2>
+					<form action="exitScript.php" method="post" accept-charset="UTF-8">
+						License Plate:<br>
+						<input type ="text" name="Plate"/><br>
+						Parking Spot Number:<br>
+						<input type ="text" name="Spot"/><br>
 						<input type="submit" value="submit" name="submit"/><br>
 					</form>
-					<p>Don't have an account? Register <a href="register.php"> here!</a><p>
 				</p>
 			</article>
 		</div>
