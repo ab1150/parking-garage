@@ -42,11 +42,19 @@
 				$start->bindParam('plate', $plate);
 				$start->execute();
 				$entry = $start->fetch();
-				echo $entry->format('Y-m-d H:i:sP') . "\n";
-				$date = new DateTime();
+				$entry = $entry['startTime'];
+				echo $entry;
+				echo  "<br>";
+				$start = new DateTime($entry);
+				$date = new DateTime('2016-06-12 11:10:10');
 				$interval = $date->diff($start);
-				//echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days "; 
-
+				//prints out hour
+				echo $interval->h;
+				echo  "<br>";
+				echo $interval->d;
+				echo  "<br>";
+				echo $interval->m;
+				echo  "<br>";
 
 				$records = $databaseConnection->prepare('DELETE FROM accounts WHERE username = "" AND LicensePlate = :plate AND paymentneeded = 0');
 				$records->bindParam('plate', $plate);
