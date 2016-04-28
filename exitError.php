@@ -1,3 +1,4 @@
+
 <?php
 	include('exitScript.php');
 ?>
@@ -5,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Exit Camera</title>
+<title>Parking Login</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -45,7 +46,7 @@
 			</section>
 		</section>
 
-		<!-- Main -->
+    <!-- Main -->
 		<div id="main">
 			<article class="post">
 				<p>
@@ -53,8 +54,7 @@
 					<form action="exitScript.php" method="post" accept-charset="UTF-8">
 						License Plate:<br>
 						<input type ="text" name="Plate"/><br>
-						<!--Parking Spot Number:<br>
-						<input type ="text" name="Spot"/><br>-->
+            <font color = "red">Invalid plate number. </font><br>
 						<input type="submit" value="submit" name="submit"/><br>
 					</form>
 				</p>
