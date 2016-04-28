@@ -26,7 +26,7 @@ session_start();
 		$findSlot->bindParam(':out',$_POST['endTime']);
 		$findSlot->execute();
 
-		$avTab = $databaseConnection->prepare('SELECT SpotNumber FROM unavTab FULL OUTER JOIN parkingspaces ON unavTab.SpotNumber = parkingspaces.SpotNumber WHERE unavTab.SpotNumber IS null OR parkingspaces.SpotNumber IS null ')
+		$avTab = $databaseConnection->prepare('SELECT SpotNumber FROM unavTab FULL OUTER JOIN parkingspaces ON unavTab.SpotNumber = parkingspaces.SpotNumber WHERE unavTab.SpotNumber IS null OR parkingspaces.SpotNumber IS null ');
 		$avTab->execute();
 
 		//Input the FROM time to the SQL database
