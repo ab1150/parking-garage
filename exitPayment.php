@@ -38,7 +38,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Order Summary</title>
+<title>Thank you!</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -82,33 +82,8 @@
 		<div id="main">
 			<article class="post">
 				<p>
-					<h2>Transaction Summary</h2>
+					<h2><center>Thank you for parking at George Street Garage!</h2><br>
 					<form action="action_page.php" method="post" accept-charset="UTF-8">
-
-
-
-							<?php
-  							$user = htmlspecialchars($_SESSION['username']);
-  							$result = getSingleValue('accounts','username',$user,'paymentneeded',$connection);
-  	            echo "Payment tendered: $result<br><br>";
-	            ?>
-
-	            <!--<?php
-	            $records = $databaseConnection->prepare('SELECT paymentneeded FROM  accounts WHERE LicensePlate = :plate');
-
-	            ?>-->
-
-
-
-	            <?php
-	            	$user = htmlspecialchars($_SESSION['username']);
-  							$result = getSingleValue('accounts','username',$user,'Balance',$connection);
-  	            echo "Remaining Balance: $result<br><br>";
-
-
-	            ?>
-
-
 
 				
 					<a href="reservation.php">Make another reservation</a><p>
