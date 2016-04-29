@@ -45,28 +45,31 @@
 				$entry = $entry['startTime'];
 				echo $entry;
 				echo  "<br>";
-				$start = new DateTime($entry);
-				$date = new DateTime('2016-06-12 11:10:10');
-				$interval = $date->diff($start);
-				//prints out hour
-				echo $interval->h;
-				echo  "<br>";
-				echo $interval->d;
-				echo  "<br>";
-				echo $interval->m;
-				echo  "<br>";
+
+
 
 				$records = $databaseConnection->prepare('DELETE FROM accounts WHERE username = "" AND LicensePlate = :plate AND paymentneeded = 0');
 				$records->bindParam('plate', $plate);
 				$records->execute();
-				//header("Location: index.php");
-				exit;
-				/*				//------------- should change field of account balance if my syntax is correct
-				$_SESSION['username'] = $results['username'];
-				$records = $databaseConnection->prepare('UPDATE accounts SET AccountBalance = (AccountBalance - paymentneeded), paymentneeded = 0 WHERE LicensePlate == :plate');
-				$records->bindParam(':plate', $plate);
+
+				$records = $databaseConnection->prepare('SELECT * FROM accounts WHERE LicensePlate = :plateNum');
+				$records->bindParam(':plateNum', $plate);
 				$records->execute();
-				//------------- should make a PAYMENT RECEIVED page*/
+				$Array = $records->fetch(PDO::FETCH_ASSOC);
+				$balance = $Array['Balance'];
+				$start = new DateTime($Array['startTime']);
+				$end = new DateTime($Array['endTime']);
+
+				$interval = $end->diff($start);
+				$paymentneeded = (24*$interval->d + $interval->h)*5;
+
+				$records = $databaseConnection->prepare('UPDATE accounts SET balance = :balance - :paymentneeded WHERE LicensePlate = :plateNum');
+				$records->bindParam(':paymentneeded', $paymentneeded);
+				$records->bindParam(':balance', $balance);
+				$records->bindParam(':plateNum', $_POST['Plate']);
+				$records->execute();
+				header("Location: index.php");
+				exit;
 			}
 			else{
 				header("Location: exitError.php");
