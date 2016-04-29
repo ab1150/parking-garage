@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 29, 2016 at 04:06 AM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Host: localhost
+-- Generation Time: Apr 29, 2016 at 05:12 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -68,12 +68,14 @@ CREATE TABLE `parkingspaces` (
 --
 
 INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `LicensePlate`, `StartTime`, `Price`) VALUES
-(100, 'OCCUPIED', NULL, 0, '2016-03-16 09:00:00', '3'),
-(101, 'OCCUPIED', '', 0, NULL, '3'),
+(100, 'VACANT', NULL, 0, NULL, '3'),
+(101, 'VACANT', NULL, 0, NULL, '3'),
+(102, 'VACANT', NULL, 0, NULL, NULL),
 (103, 'VACANT', NULL, 0, NULL, NULL),
 (104, 'VACANT', NULL, 0, NULL, NULL),
 (106, 'VACANT', NULL, 0, NULL, NULL),
 (107, 'VACANT', NULL, 0, NULL, NULL),
+(108, 'VACANT', NULL, 0, NULL, NULL),
 (109, 'VACANT', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -120,12 +122,6 @@ INSERT INTO `unavtab` (`startTime`, `endTime`, `SpotNum`, `username`) VALUES
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `parkingspaces`
