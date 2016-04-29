@@ -14,7 +14,7 @@ try {
   $databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
   echo 'ERROR: ' . $e->getMessage();
-}
+} 
 
 if(isset($_POST["submit"])){
   $errMsg = '';
@@ -36,10 +36,16 @@ if(isset($_POST["submit"])){
   $relate->execute();
   $username = $relate->fetch(PDO::FETCH_ASSOC);
   $username = $username['username'];
-  print_r($username);
+  if($username == ""){
+    $temp = 0;
+    $new = $databaseConnection->prepare('INSERT INTO accounts ( LicensePlate, startTime) VALUES (:LicensePlate, :startTime)');
+    $new->bindParam('LicensePlate', $plateNum);
+    $new->bindParam('startTime', $startTime);
+    $new->execute();
+  }
 
   $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username,  StartTime=:startTime, Status=2, LicensePlate = :plateNum WHERE SpotNumber= :spotNum');
-  $relate->bindParam('username',$username);
+  $relate->bindParam('username',$usernamtempe);
   $relate->bindParam('spotNum',$spotNum);
   $relate->bindParam('startTime', $startTime);
   $relate->bindParam('plateNum', $plateNum);
