@@ -68,7 +68,7 @@
 				$records->bindParam(':balance', $balance);
 				$records->bindParam(':plateNum', $_POST['Plate']);
 				$records->execute();
-				header("Location: index.php");
+				header("Location: exitPayment.php");
 				exit;
 			}
 			else{
