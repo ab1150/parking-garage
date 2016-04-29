@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2016 at 11:53 PM
+-- Generation Time: Apr 29, 2016 at 04:06 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -45,8 +45,8 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`, `endTime`, `paymentneeded`) VALUES
 (1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00', NULL, 0),
-(0, 1, 'username', 'password', 100, '1995-04-12 04:00:00', '1234567', '2016-04-29 14:22:00', NULL, 0),
-(0, 2, 'richUser', 'password', 10000000, '0000-00-00 00:00:00', '2345678', '0003-03-03 15:12:00', '4444-04-04 14:22:00', 0);
+(0, 1, 'username', 'password', 100, '2016-04-29 14:02:00', '1234567', '2016-04-29 09:00:00', '2016-04-29 11:00:00', 10),
+(0, 2, 'richUser', 'password', 9999900, '0000-00-00 00:00:00', '2345678', '2016-04-29 00:00:00', '2016-04-29 13:01:00', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `LicensePlate`,
 (100, 'OCCUPIED', NULL, 0, '2016-03-16 09:00:00', '3'),
 (101, 'OCCUPIED', '', 0, NULL, '3'),
 (103, 'VACANT', NULL, 0, NULL, NULL),
-(104, 'OCCUPIED', NULL, 0, '2016-04-29 14:22:00', NULL),
+(104, 'VACANT', NULL, 0, NULL, NULL),
 (106, 'VACANT', NULL, 0, NULL, NULL),
 (107, 'VACANT', NULL, 0, NULL, NULL),
 (109, 'VACANT', NULL, 0, NULL, NULL);
