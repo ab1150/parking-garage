@@ -63,7 +63,7 @@
 				$interval = $end->diff($start);
 				$paymentneeded = (24*$interval->d + $interval->h)*5;
 
-				$records = $databaseConnection->prepare('UPDATE accounts SET balance = :balance - :paymentneeded WHERE LicensePlate = :plateNum');
+				$records = $databaseConnection->prepare('UPDATE accounts SET paymentneeded = :paymentneeded, balance = :balance - :paymentneeded WHERE LicensePlate = :plateNum');
 				$records->bindParam(':paymentneeded', $paymentneeded);
 				$records->bindParam(':balance', $balance);
 				$records->bindParam(':plateNum', $_POST['Plate']);
