@@ -1,11 +1,12 @@
-<!--<? php
-	
-?>-->
+
+<?php
+	include('exitScript.php');
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Parking Registraion</title>
+<title>Parking Login</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -16,7 +17,6 @@
 					<ul>
 						<li><a href="register.php">Register</a></li>
 						<li><a href="login.php">Log in</a></li>
-						<li><a href="reservation.php">Reservations</a></li>
 					</ul>
 				</nav>
 				<nav class="main">
@@ -46,21 +46,16 @@
 			</section>
 		</section>
 
-		<!-- Main -->
+    <!-- Main -->
 		<div id="main">
 			<article class="post">
 				<p>
-					<h2>Register here!</h2>
-					<form action="action_page.php" method="post" accept-charset="UTF-8">
-						Email:<br>
-						<input type = "text" name = "Email"><br>
-						Username:<br>
-						<input type ="text" name="username"><br>
-						Password:<br>
-						<input type ="password" name="password"><br>
-						Confirm password:<br>
-						<input type ="password" name="confirm"><br>
-						<input type="submit" value="Submit"><br>
+					<h2>Exit Camera</h2>
+					<form action="exitScript.php" method="post" accept-charset="UTF-8">
+						License Plate:<br>
+						<input type ="text" name="Plate"/><br>
+            <font color = "red">Invalid plate number. </font><br>
+						<input type="submit" value="submit" name="submit"/><br>
 					</form>
 				</p>
 			</article>
@@ -83,5 +78,5 @@
 			<script src="assets/js/main.js"></script>
 
 
-</body>
+	</body>
 </html>

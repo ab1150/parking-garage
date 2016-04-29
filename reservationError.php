@@ -1,12 +1,20 @@
-<!--<? php
-	
-?>-->
-
+<?php
+	include("reservationScript.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Parking Registraion</title>
+<title>Parking Reservation</title>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<style>
+	.ey
+	 {
+	  display:inline-block;
+	 }
+	form{
+	    display:inline-block;
+	}
+</style>
 </head>
 <body>
 	<div id="wrapper">
@@ -49,20 +57,14 @@
 		<!-- Main -->
 		<div id="main">
 			<article class="post">
-				<p>
-					<h2>Register here!</h2>
-					<form action="action_page.php" method="post" accept-charset="UTF-8">
-						Email:<br>
-						<input type = "text" name = "Email"><br>
-						Username:<br>
-						<input type ="text" name="username"><br>
-						Password:<br>
-						<input type ="password" name="password"><br>
-						Confirm password:<br>
-						<input type ="password" name="confirm"><br>
-						<input type="submit" value="Submit"><br>
-					</form>
-				</p>
+				<h2>Make A Reservation</h2>
+				<form action="reservationScript.php" method="POST">
+					Start Time: <input type="datetime-local" name="startTime"><br>
+					End Time: <input type="datetime-local" name="endTime"><br>
+				<br>
+				<font color = "red">There are no reservations available in this time slot. </font><br><br>
+				<input type = "submit" name = "submit" value = "Submit">
+			</form>
 			</article>
 		</div>
 

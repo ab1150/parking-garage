@@ -53,8 +53,8 @@
 					<form action="exitScript.php" method="post" accept-charset="UTF-8">
 						License Plate:<br>
 						<input type ="text" name="Plate"/><br>
-						Parking Spot Number:<br>
-						<input type ="text" name="Spot"/><br>
+						<!--Parking Spot Number:<br>
+						<input type ="text" name="Spot"/><br>-->
 						<input type="submit" value="submit" name="submit"/><br>
 					</form>
 				</p>
