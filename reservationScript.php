@@ -22,30 +22,44 @@ session_start();
 		//We want all reservations where startime is between in and out AND/OR endtime is between in and out
 		$findSlot = $databaseConnection->prepare('INSERT INTO unavTab SELECT * FROM reservations WHERE (startTime BETWEEN :inTime AND :out) OR (endTime between :inTime AND :out) OR ((startTime < :inTime) AND (endTime > :inTime))');
 		$findSlot->bindParam(':inTime',$_POST['startTime']);
-		$findSlot->bindParam(':out',$_POST['endTime']);
+		$findSlot->bindParam(':out',$_POST['endTime']); 
 		$findSlot->execute();
 
-		$avTab = $databaseConnection->prepare('SELECT SpotNum FROM unavTab FULL JOIN parkingspaces ON SpotNum = parkingspaces.SpotNumber WHERE SpotNum = NULL OR parkingspaces.SpotNumber = NULL');
+		$avTab = $databaseConnection->prepare('SELECT SpotNumber FROM parkingspaces WHERE NOT EXISTS (SELECT SpotNum FROM unavTab
+			WHERE parkingspaces.SpotNumber = unavTab.SpotNum)');
 		$avTab->execute();
+		$goodSpotArray = $avTab->fetch(PDO::FETCH_ASSOC);
+		$goodSpot = $goodSpotArray['SpotNumber'];
+		
 
 		//Input the FROM time to the SQL database
-
-		//Prepare the SQL commands
+		if($goodSpotArray == NULL){
+			header('Location: reservationError.php');
+			$clear = $databaseConnection->prepare('TRUNCATE TABLE unavTab');
+			$clear->execute();
+			exit;
+		}
+		else{
 		$user = $_SESSION['username'];
 		$writeTime = $databaseConnection->prepare("UPDATE accounts SET Reservation = :fromTime WHERE Username = :username");
 		$writeTime->bindParam(':fromTime', $_POST["startTime"]);
 		$writeTime->bindParam(':username', $user);
 		$writeTime->execute();
-		/*$goodSpot = $writeTime->fetch();
 
-		$writeTime = $databaseConnection->prepare('INSERT INTO reservations (startTime,endTime, SpotNumber, username);
+
+		$writeTime = $databaseConnection->prepare('INSERT INTO reservations (startTime,endTime, SpotNumber, username)
 			VALUES (:startTime, :endTime, :SpotNumber, :username)');
 		$writeTime->bindParam(':startTime', $_POST['startTime']);
 		$writeTime->bindParam(':endTime', $_POST['endTime']);
 		$writeTime->bindParam(':SpotNumber', $goodSpot);
 		$writeTime->bindParam(':username', $user);
-		$writeTime->execute();*/
-		
+		//echo ($goodSpot);
+		$writeTime->execute();
+		// echo "print something";*/
+		$clear = $databaseConnection->prepare('TRUNCATE TABLE unavTab');
+		$clear->execute();
+
 		header("Location: account.php");
+		}
 	}
 ?>
