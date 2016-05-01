@@ -58,11 +58,13 @@
 			<article class="post">
 				<h2>Mock Input for a Parking Spot Sensor</h2>
 				<form action="parkCameraMockScript.php" method="POST">
-    			Plate number: <?php
-                    $readPlate = fopen("plate.txt","r");
-                    echo fread($readPlate,filesize("plate.txt"));
-                    fclose($readPlate);
-                ?>
+    			Plate number: <input type="text" name="plateNum" value=
+                    "<?php
+                        $readPlate = fopen("plate.txt","r");
+                        echo fread($readPlate,filesize("plate.txt"));
+                        fclose($readPlate);
+                    ?>"
+                >
                 <br>
 				Spot number: <input type="number" name="spotNum"><br>
 				Start Time: <input type="datetime-local" name="startTime"><br>

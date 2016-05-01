@@ -88,7 +88,9 @@
 							<?php
   							$user = htmlspecialchars($_SESSION['username']);
   							$result = getSingleValue('accounts','username',$user,'Reservation',$connection);
+                            $spotNum = getSingleValue('reservations','username', $user, 'spotNumber', $connection);
   	            echo "Reservation time: $result<br><br>";
+                echo "Spot Number: $spotNum<br><br>";
 	            ?>
 						<!--<p>Time Remaining</p><br>-->
 						<!-- clock -->

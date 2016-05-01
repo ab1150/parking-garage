@@ -51,11 +51,12 @@
 				<p>
 					<h2>Exit Camera</h2>
 					<form action="exitScript.php" method="post" accept-charset="UTF-8">
-						License Plate: <?php
+						License Plate: <input type = "text" value=<?php
                             $readPlate = fopen("plate.txt","r");
                             echo fread($readPlate,filesize("plate.txt"));
                             fclose($readPlate);
-                        ?>
+                        ?> name="Plate"
+                        >
                         <br>
 						<!--Parking Spot Number:<br>
 						<input type ="text" name="Spot"/><br>-->

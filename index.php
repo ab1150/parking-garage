@@ -60,7 +60,7 @@
 				$servername = "localhost";
 				$username = "root";
 				$password = "";
-				$dbname = "parkingGarage";
+				$dbname = "parkinggarage";
 
 				$cols = 10;
 				$cnt = 0;

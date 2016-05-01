@@ -14,7 +14,7 @@ try {
   $databaseConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
   echo 'ERROR: ' . $e->getMessage();
-} 
+}
 
 if(isset($_POST["submit"])){
   $errMsg = '';
@@ -44,8 +44,10 @@ if(isset($_POST["submit"])){
     $new->execute();
   }
 
-  $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username,  StartTime=:startTime, Status=2, LicensePlate = :plateNum WHERE SpotNumber= :spotNum');
-  $relate->bindParam('username',$usernamtempe);
+
+
+    $relate = $databaseConnection->prepare('UPDATE parkingspaces SET Username= :username,  StartTime=:startTime, Status=2, LicensePlate = :plateNum WHERE SpotNumber= :spotNum');
+  $relate->bindParam('username',$username);
   $relate->bindParam('spotNum',$spotNum);
   $relate->bindParam('startTime', $startTime);
   $relate->bindParam('plateNum', $plateNum);

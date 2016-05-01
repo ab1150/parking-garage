@@ -30,7 +30,7 @@
 		//WILL NEED TO CHANGE DATABASE CONNECTION
 
 		if($errMsg == ''){
-			$records = $databaseConnection->prepare('SELECT LicensePlate FROM  accounts WHERE LicensePlate = :plate');
+			$records = $databaseConnection->prepare('SELECT LicensePlate FROM accounts WHERE LicensePlate = :plate');
 			$records->bindParam(':plate', $plate);//--------------edited
 			$records->execute();
 			$results = $records->fetch();
