@@ -1,4 +1,7 @@
 <?php
+//written by: Calvin Li and Sean Wu
+//tested by: Anantha Mahavrathayajula and Anushiya Balakrishnan
+//debugged by: Sam Yang and Justen Yeung
 	//start session
                         session_start();
 
