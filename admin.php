@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- //written by: Calvin Li and Sean Wu  and Anushiya Balakrishnan
+//tested by: Anantha Mahavrathayajula
+//debugged by: Sam Yang and Justen Yeung -->
+
+
 <html>
 <head>
 <title>Home Page</title>
