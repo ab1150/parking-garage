@@ -1,6 +1,9 @@
 <?php
 //This is the handler script for creating reservations
 
+//written by:Sean Wu and Anantha Mahavrathayajula and Sam Yang
+//tested by:  Anushiya Balakrishnan and Calvin Li 
+//debugged by: Justen Yeung
 //start session
 session_start();
 
