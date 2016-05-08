@@ -1,6 +1,13 @@
 The license plate reader relies on an open source software called OpenALPR.
+
 Installation instructions for Ubuntu Linux:
 https://github.com/openalpr/openalpr/wiki/Compilation-instructions-%28Ubuntu-Linux%29
+
+Windows:
+https://github.com/openalpr/openalpr/wiki/Compilation-instructions-%28Windows%29
+
+OS X:
+https://github.com/openalpr/openalpr/wiki/Compilation-instructions-%28OS-X%29
 
 In order to run the reader, the configuration files for the OpenALPR daemon first need to be configured.
 In the directory where the configuration files are stored for your system, open the alprd.conf file and insert
