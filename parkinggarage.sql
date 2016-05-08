@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 01, 2016 at 09:54 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.4
+-- Generation Time: Apr 29, 2016 at 06:27 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,8 +45,8 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`isAdmin`, `id`, `Username`, `Password`, `Balance`, `Reservation`, `LicensePlate`, `startTime`, `endTime`, `paymentneeded`) VALUES
 (1, 0, 'admin', 'password', 0, NULL, '', '0000-00-00 00:00:00', NULL, 0),
-(0, 2, 'richUser', 'password', 9999900, '2016-04-30 03:00:00', '2345678', '2016-04-29 00:00:00', '2016-04-29 13:01:00', 0),
-(0, 1, 'username', 'password', 80, '2016-04-29 03:03:00', '756JWB', '2016-04-29 14:02:00', '2016-04-29 18:08:00', 20);
+(0, 1, 'username', 'password', 100, '2016-04-29 14:02:00', '1234567', '2016-04-29 09:00:00', '2016-04-29 11:00:00', 10),
+(0, 2, 'richUser', 'password', 9999900, '0000-00-00 00:00:00', '2345678', '2016-04-29 00:00:00', '2016-04-29 13:01:00', 0);
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `parkingspaces` (
   `SpotNumber` int(11) NOT NULL,
   `Status` enum('VACANT','OCCUPIED','RESERVED','') DEFAULT 'VACANT',
   `Username` char(20) DEFAULT NULL,
-  `LicensePlate` text NOT NULL,
+  `LicensePlate` int(11) NOT NULL,
   `StartTime` datetime DEFAULT NULL,
   `Price` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,16 +68,16 @@ CREATE TABLE `parkingspaces` (
 --
 
 INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `LicensePlate`, `StartTime`, `Price`) VALUES
-(100, 'VACANT', NULL, '0', NULL, '3'),
-(101, 'VACANT', NULL, '0', NULL, '3'),
-(102, 'VACANT', NULL, '0', NULL, NULL),
-(103, 'VACANT', NULL, '0', NULL, NULL),
-(104, 'VACANT', NULL, '0', NULL, NULL),
-(105, 'VACANT', NULL, '0', NULL, NULL),
-(106, 'VACANT', NULL, '', NULL, NULL),
-(107, 'VACANT', NULL, '', NULL, NULL),
-(108, 'VACANT', NULL, '0', NULL, NULL),
-(109, 'VACANT', NULL, '0', NULL, NULL);
+(100, 'VACANT', NULL, 0, NULL, '3'),
+(101, 'VACANT', NULL, 0, NULL, '3'),
+(102, 'VACANT', NULL, 0, NULL, NULL),
+(103, 'VACANT', NULL, 0, NULL, NULL),
+(104, 'VACANT', NULL, 0, NULL, NULL),
+(105, 'VACANT', NULL, 0, NULL, NULL),
+(106, 'VACANT', NULL, 0, NULL, NULL),
+(107, 'VACANT', NULL, 0, NULL, NULL),
+(108, 'VACANT', NULL, 0, NULL, NULL),
+(109, 'VACANT', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,33 +88,17 @@ INSERT INTO `parkingspaces` (`SpotNumber`, `Status`, `Username`, `LicensePlate`,
 CREATE TABLE `reservations` (
   `startTime` datetime NOT NULL,
   `endTime` datetime NOT NULL,
-  `spotNumber` int(11) NOT NULL,
+  `spotNumber` int(11) NOT NULL DEFAULT '0',
   `username` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `reservations`
---
-
-INSERT INTO `reservations` (`startTime`, `endTime`, `spotNumber`, `username`) VALUES
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 100, 'user1'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 101, 'user2'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 102, 'user3'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 103, 'user4'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 104, 'user5'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 105, 'user6'),
-('2016-04-29 03:03:00', '2016-04-30 17:05:00', 106, 'username'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 107, 'user7'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 108, 'user8'),
-('2016-04-29 07:00:00', '2016-04-29 15:00:00', 109, 'user9');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unavTab`
+-- Table structure for table `unavtab`
 --
 
-CREATE TABLE `unavTab` (
+CREATE TABLE `unavtab` (
   `startTime` datetime NOT NULL,
   `endTime` datetime NOT NULL,
   `SpotNum` int(11) NOT NULL,
@@ -142,12 +126,6 @@ ALTER TABLE `parkingspaces`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`spotNumber`);
-
---
--- Indexes for table `unavTab`
---
-ALTER TABLE `unavTab`
-  ADD PRIMARY KEY (`SpotNum`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

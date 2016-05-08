@@ -1,14 +1,18 @@
 <?php
 
-//create the testing object
 $I = new AcceptanceTester($scenario);
 //navigate to the page
-$I->amOnPage('/exit.php');
+$I->amOnPage('/login.php');
 //Check that all the necessary text on the page is present
 $I->seeLink('Automated Garage');
-$I->seeLink('Log in');
 $I->seeLink('Register');
-$I->see('Exit Camera');
+$I->seeLink('Log in');
+$I->see('George Street Garage');
+$I->see('Login here!');
+$I->see('Username:');
+$I->see('Password:');
+$I->see('Don\'t have an account? Register');
+$I->seeLink('here!');
 
 //test the search bar
 $I->click(['class' => 'search']);
@@ -20,10 +24,9 @@ $I->seeLink('Register');
 $I->seeLink('Make a reservation');
 $I->seeLink('Log in');
 
-//check if field is filled
-$I->see('License Plate:');
-
-//test the submit button
+//Test the fields
+$I->fillField('username','username');
+$I->fillField('password','password');
 $I->click('submit');
 
 ?>

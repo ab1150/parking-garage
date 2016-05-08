@@ -10,11 +10,3 @@ modules:
         - PhpBrowser:
             url: http://localhost/parking-garage
         - \Helper\Acceptance
-      - Db:
-             dsn: 'mysql:host=localhost;dbname=parkinggarage'
-             user: 'root'
-             password: ''
-             dump: 'tests/_data/dump.sql'
-             populate: true
-             cleanup: false
-             reconnect: true
