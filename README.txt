@@ -23,7 +23,7 @@ parkCameraMock.php - page for taking exit of license plates at spots, deletes te
 parkCameraMockScript.php - processes all inputs from parkCameraMock.php
 parkinggarageFINAL.sql - sql database information for creating databases
 plate.txt - license plate informatoin from openalpr put here
-platesHandler.php - used to take in license plate information from plate.txt
+platesHandler.php - used to take in license plate information fropaeg m plate.txt
 register.php - page accessed to create new account
 reservation.php - page for new reservations
 reservationError.php - page returned for invalid reservations, prompts to try again
@@ -37,3 +37,36 @@ assets - Website + CSS files
 html5up-future-imperfect - Website + CSS files
 images - images used in the website
 tests - some of the tests used for unit testing and other tests
+
+
+
+Running the Code
+
+A few pre-requisites for running:
+1) Download and install Xampp here : https://www.apachefriends.org/index.html
+	Xampp is used as the php developing environment, that additionally hosted the sql databases.
+2) Download and install Openalpr here: https://github.com/openalpr/openalpr
+	Linux based version only, Openalpr is the open source software that we built our camera system off of.
+
+Once a database is started and running the code navigate to this page:
+	localhost/parking-garage/index.php
+
+	Home page has now been reached - all things in the website can now be reached.  
+
+		Login
+			Navigate to login page, and login, test account is (username,password). 
+
+		Make a reservation
+			Navigate to the reservation page by clicking the link, set time accordingly.
+
+Camera Functions
+	enter into terminal: alprd -f 
+	Needed to run program.  Read READMECAMERA.txt for more details and instructions.
+	License plates should now be able to be read.
+
+	localhost/parking-garage/parkingCameraMock.php
+		Leaving spot
+			System should automatically detect leaving of car, registers license plate.  Submit and system should be updated.
+		Exit
+			localhost/parking-garage/exit.php
+			License plate iwl lbe automatically read, submit to have system be updated.  
