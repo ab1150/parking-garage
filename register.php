@@ -3,6 +3,11 @@
 ?>-->
 
 <!DOCTYPE html>
+<!-- //written by: Sean Wu  and Anushiya Balakrishnan
+//tested by: Calvin Li and Anantha Mahavrathayajula
+//debugged by: Sam Yang and Justen Yeung -->
+
+
 <html>
 <head>
 <title>Parking Registraion</title>
