@@ -1,6 +1,8 @@
 <?php
 	session_start();
-
+	//written by: Calvin Li and Anushiya Balakrishnan
+	//tested by: Anantha Mahavrathayajula and Sean Wu  
+	//debugged by: Justen Yeung and Sam Yang
 
 	//WILL NEED TO CHANGE CONFIG CONSTRAINTS I THINK
 
