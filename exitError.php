@@ -4,6 +4,10 @@
 ?>
 
 <!DOCTYPE html>
+<!-- //written by: Calvin Li and Sam Yang
+//tested by: Anantha Mahavrathayajula and Sean Wu  
+//debugged by: Anushiya Balakrishnanand Justen Yeung -->
+
 <html>
 <head>
 <title>Parking Login</title>
