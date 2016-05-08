@@ -3,7 +3,7 @@
 GROUP 6 SPRING 2016: 
 Anushiya Balakrishnan, Calvin Li, Anantha Mahavrathayajula, Sean Wu, Sam Yang, Justen Yeung 
 
-<Filename> - <description>
+Filename - description
 
 account.html - site structure for account page
 account.php - page with account information
@@ -29,16 +29,12 @@ reservation.php - page for new reservations
 reservationError.php - page returned for invalid reservations, prompts to try again
 reservationScript.php - handles all processing of inputs for reservation.php
 
-
-
-<Folders> - <description>
+Folders - description
 
 assets - Website + CSS files
 html5up-future-imperfect - Website + CSS files
 images - images used in the website
 tests - some of the tests used for unit testing and other tests
-
-
 
 Running the Code
 
@@ -72,7 +68,7 @@ Camera Functions
 			License plate iwl lbe automatically read, submit to have system be updated.  
 
 Accounts and Passwords
-<username> - <password>
+username - password
 username - password
 richUser - password
 admin - password
