@@ -2,6 +2,10 @@
 	include("reservationScript.php");
 ?>
 <!DOCTYPE html>
+<!-- //written by:Anushiya Balakrishnan and Calvin Li 
+//tested by:  Sean Wu and Anantha Mahavrathayajula
+//debugged by: Sam Yang and Justen Yeung -->
+
 <html>
 <head>
 <title>Parking Reservation</title>
