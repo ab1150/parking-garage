@@ -1,5 +1,8 @@
 <?php
 	//start session
+	//written by: Calvin Li and Anushiya Balakrishnan
+	//tested by: Anantha Mahavrathayajula and Sean Wu  
+	//debugged by: Justen Yeung and Sam Yang
                         session_start();
 
                     	//DB configuration Constants
