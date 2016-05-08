@@ -3,7 +3,7 @@ Anushiya Balakrishnan	Anantha Mahav	Calvin Li 	Justen Yeung 	Samuel Yang		Sean W
 
 
 
-Filename - description
+<Filename> - <description>
 
 account.html - site structure for account page
 account.php - page with account information
@@ -31,7 +31,7 @@ reservationScript.php - handles all processing of inputs for reservation.php
 
 
 
-Folders - description
+<Folders> - <description>
 
 assets - Website + CSS files
 html5up-future-imperfect - Website + CSS files
@@ -70,3 +70,9 @@ Camera Functions
 		Exit
 			localhost/parking-garage/exit.php
 			License plate iwl lbe automatically read, submit to have system be updated.  
+
+Accounts and Passwords
+<username> - <password>
+username - password
+richUser - password
+admin - password
