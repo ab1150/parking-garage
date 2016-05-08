@@ -2,6 +2,7 @@ Contributors:
 Anushiya Balakrishnan	Anantha Mahav	Calvin Li 	Justen Yeung 	Samuel Yang		Sean Wu
 
 
+
 Filename - description
 
 account.html - site structure for account page
@@ -27,3 +28,12 @@ register.php - page accessed to create new account
 reservation.php - page for new reservations
 reservationError.php - page returned for invalid reservations, prompts to try again
 reservationScript.php - handles all processing of inputs for reservation.php
+
+
+
+Folders - description
+
+assets - Website + CSS files
+html5up-future-imperfect - Website + CSS files
+images - images used in the website
+tests - some of the tests used for unit testing and other tests
