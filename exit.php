@@ -3,6 +3,9 @@
 ?>
 
 <!DOCTYPE html>
+<!-- //written by: Calvin Li and Sean Wu  and Sam Yang
+//tested by: Anantha Mahavrathayajula
+//debugged by: Anushiya Balakrishnanand Justen Yeung -->
 <html>
 <head>
 <title>Exit Camera</title>
